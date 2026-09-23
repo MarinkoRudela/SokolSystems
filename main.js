@@ -50,3 +50,17 @@
       .finally(function(){btn.disabled=false;btn.textContent='Send message';});
   });
 })();
+
+(function(){
+  // hero typing demo (skipped when the visitor prefers reduced motion)
+  var el=document.getElementById('typed'); if(!el) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var lines=['Three static ads for our summer sale, in 4:5 and 9:16','A UGC-style video for our new serum launch','Product shots on marble, soft morning light','Five new hooks for our best-selling ad','A carousel explaining how our app works'];
+  var i=0,j=lines[0].length,del=true;
+  function tick(){
+    var s=lines[i];
+    if(del){ j--; el.textContent=s.slice(0,j); if(j<=0){del=false;i=(i+1)%lines.length;} setTimeout(tick,22); }
+    else { j++; el.textContent=lines[i].slice(0,j); if(j>=lines[i].length){del=true; setTimeout(tick,2200);} else setTimeout(tick,45); }
+  }
+  setTimeout(tick,2600);
+})();
