@@ -8,7 +8,7 @@
 //
 // Env vars (Vercel): STRIPE_WEBHOOK_SECRET, GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET,
 // GOOGLE_OAUTH_REFRESH_TOKEN, AIRTABLE_TOKEN (needs data.records:read + write), AIRTABLE_BASE_ID.
-// Optional: ONBOARDING_GUIDE_URL, DRIVE_PARENT_FOLDER_ID, AIRTABLE_CLIENTS_TABLE_ID.
+// Optional: ONBOARDING_GUIDE_URL, REQUEST_FORM_URL (Airtable form share link), DRIVE_PARENT_FOLDER_ID, AIRTABLE_CLIENTS_TABLE_ID.
 import crypto from 'node:crypto';
 
 const PRICE_CENTS = 299500;
@@ -126,7 +126,13 @@ export default async function handler(req, res) {
 
     const fields = { 'Drive Folder': folder.webViewLink };
     if (env.ONBOARDING_GUIDE_URL) fields['Notion Onboarding Page'] = env.ONBOARDING_GUIDE_URL;
-    const ready = Boolean(f['Request Form Link']);
+    let formLink = f['Request Form Link'];
+    if (!formLink && env.REQUEST_FORM_URL) {
+      const clientName = f['Client Name'] || name;
+      formLink = `${env.REQUEST_FORM_URL}${env.REQUEST_FORM_URL.includes('?') ? '&' : '?'}prefill_Client=${encodeURIComponent(clientName)}&hide_Client=true`;
+      fields['Request Form Link'] = formLink;
+    }
+    const ready = Boolean(formLink);
     if (ready) fields['Status'] = 'Active';
     await airtable(env, `${table}/${rec.id}`, { method: 'PATCH', body: JSON.stringify({ typecast: true, fields }) });
 
