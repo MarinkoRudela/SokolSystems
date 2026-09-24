@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /thank-you
 Disallow: /api/
+Disallow: /portal
 
 Sitemap: https://sokolsystems.io/sitemap.xml

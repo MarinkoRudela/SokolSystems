@@ -8,7 +8,7 @@
 //
 // Env vars (Vercel): STRIPE_WEBHOOK_SECRET, GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET,
 // GOOGLE_OAUTH_REFRESH_TOKEN, AIRTABLE_TOKEN (needs data.records:read + write), AIRTABLE_BASE_ID.
-// Optional: ONBOARDING_GUIDE_URL, REQUEST_FORM_URL (Airtable form share link), DRIVE_PARENT_FOLDER_ID, AIRTABLE_CLIENTS_TABLE_ID.
+// Optional: ONBOARDING_GUIDE_URL, DRIVE_PARENT_FOLDER_ID, AIRTABLE_CLIENTS_TABLE_ID.
 import crypto from 'node:crypto';
 
 const PRICE_CENTS = 299500;
@@ -126,17 +126,19 @@ export default async function handler(req, res) {
 
     const fields = { 'Drive Folder': folder.webViewLink };
     if (env.ONBOARDING_GUIDE_URL) fields['Notion Onboarding Page'] = env.ONBOARDING_GUIDE_URL;
+    // Every client gets a private portal (send requests, track status, approve deliveries).
     let formLink = f['Request Form Link'];
-    if (!formLink && env.REQUEST_FORM_URL) {
-      const clientName = f['Client Name'] || name;
-      formLink = `${env.REQUEST_FORM_URL}${env.REQUEST_FORM_URL.includes('?') ? '&' : '?'}prefill_Client=${encodeURIComponent(clientName)}&hide_Client=true`;
+    if (!f['Portal Token']) {
+      const code = crypto.randomBytes(24).toString('hex');           // 48 hex chars, unguessable
+      fields['Portal Token'] = code;
+      formLink = `https://sokolsystems.io/portal?c=${code}`;
       fields['Request Form Link'] = formLink;
     }
     const ready = Boolean(formLink);
     if (ready) fields['Status'] = 'Active';
     await airtable(env, `${table}/${rec.id}`, { method: 'PATCH', body: JSON.stringify({ typecast: true, fields }) });
 
-    console.log('Onboarded', customer, 'folder', folder.id, ready ? '(activated)' : '(left in Onboarding: no request form link yet)');
+    console.log('Onboarded', customer, 'folder', folder.id, ready ? '(activated)' : '(left in Onboarding)');
     return res.status(200).json({ ok: true, activated: ready });
   } catch (e) {
     console.error('Onboarding failure:', e && e.message);

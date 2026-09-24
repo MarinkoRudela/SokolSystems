@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your client portal — Sokol Systems</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#FBF6EE">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/young-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body class="page portal">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav nav-portal">
+    <a class="mark" href="/" aria-label="Sokol Systems home"><img src="https://upload.higgsfield.ai/user_3BuGQFUJddg2WAwVdsGudVXAiOh/46eded87-b4c3-40a7-aac9-ff9a2842df7d.webp" alt="" width="34" height="34">Sokol Systems</a>
+    <span class="portal-label">Client portal</span>
+  </div>
+</header>
+<main id="main" class="pwrap">
+  <div id="state" class="pstate" role="status" aria-live="polite">Loading your portal…</div>
+  <div id="app" hidden>
+    <section class="phead">
+      <div>
+        <h1>Hi <em id="p-name"></em></h1>
+        <p class="lede">Send a request, track progress, and approve deliveries — all in one place.</p>
+      </div>
+      <nav class="plinks" aria-label="Your links">
+        <a id="p-drive" class="plink" hidden>Your drive folder</a>
+        <a id="p-guide" class="plink" hidden>Onboarding guide</a>
+        <a id="p-billing" class="plink">Billing</a>
+      </nav>
+    </section>
+    <p id="p-banner" class="pbanner" hidden></p>
+
+    <div class="pgrid">
+      <section class="pcard" aria-labelledby="new-h">
+        <h2 id="new-h" class="ph2">New request</h2>
+        <form id="req-form" novalidate>
+          <div class="field"><label for="r-title">What do you need?</label><input id="r-title" name="title" type="text" maxlength="120" required placeholder="e.g. 3 static ads for our summer sale"></div>
+          <div class="field"><label for="r-type">Type</label><select id="r-type" name="type" required></select></div>
+          <div class="field"><label for="r-brief">Brief</label><textarea id="r-brief" name="brief" maxlength="4000" required placeholder="Who is it for, what's the offer or message, anything we must include or avoid?"></textarea></div>
+          <fieldset class="field"><legend>Where will it run?</legend><div class="checks" id="r-platforms"></div></fieldset>
+          <fieldset class="field"><legend>Sizes</legend><div class="checks" id="r-sizes"></div></fieldset>
+          <div class="field"><label for="r-files">Reference files <span class="opt">(optional — up to 3, 2.5 MB total)</span></label><input id="r-files" name="files" type="file" multiple accept="image/png,image/jpeg,image/webp,image/gif,application/pdf,video/mp4">
+            <p class="hint" id="files-hint">Bigger files or brand assets? Add them to your drive folder instead.</p></div>
+          <button type="submit" class="btn btn-main">Send request</button>
+          <p class="form-status" id="req-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="pcard" aria-labelledby="list-h">
+        <h2 id="list-h" class="ph2">Your requests</h2>
+        <ul id="req-list" class="rlist"></ul>
+        <p id="req-empty" class="hint" hidden>No requests yet. Send your first one and it'll appear here.</p>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="/portal-app.js" defer></script>
+</body>
+</html>
