@@ -65,3 +65,16 @@
   setTimeout(tick,2600);
 })();
 
+(function(){
+  // explainer video: autoplay only when visible and motion is OK; always pausable
+  var v=document.getElementById('reel'), b=document.getElementById('reel-toggle'); if(!v||!b) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var userPaused=reduce;
+  function label(){ var p=v.paused; b.textContent=p?'Play':'Pause'; b.setAttribute('aria-pressed',p?'true':'false'); }
+  function play(){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
+  b.addEventListener('click',function(){ if(v.paused){userPaused=false;play();} else {userPaused=true;v.pause();} });
+  v.addEventListener('play',label); v.addEventListener('pause',label); label();
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(!userPaused) play(); } else v.pause(); }); },{threshold:.35}).observe(v);
+  } else if(!reduce){ play(); }
+})();
