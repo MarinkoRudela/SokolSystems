@@ -5,7 +5,7 @@
   function el(tag,cls,text){var e=document.createElement(tag); if(cls)e.className=cls; if(text!=null)e.textContent=text; return e;}
   function fail(msg){state.textContent=msg; state.className='pstate bad'; app.hidden=true;}
   function fmt(d){try{return new Date(d).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})}catch(e){return ''}}
-  var pillCls={'New':'p-new','In progress':'p-prog','Needs info':'p-coral','Delivered':'p-done','Revision requested':'p-coral','Approved':'p-done'};
+  var pillCls={'New':'p-new','In progress':'p-prog','Needs info':'p-coral','Delivered':'p-done','Revision requested':'p-coral','Approved':'p-done','Info received':'p-prog'};
   function api(method,body){
     var url='/api/portal'+(method==='GET'?'?c='+encodeURIComponent(code):'');
     return fetch(url,{method:method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(Object.assign({c:code},body)):undefined})
@@ -22,6 +22,20 @@
       li.appendChild(el('p','rmeta',[r.type,fmt(r.created)].filter(Boolean).join(' · ')));
       if(r.delivery){var a=el('a','rfiles','View delivered files'); a.href=r.delivery; a.target='_blank'; a.rel='noopener noreferrer'; li.appendChild(a);}
       if(r.status==='Revision requested') li.appendChild(el('p','rnote','Changes requested — we\u2019re on it.'));
+      if(r.status==='Info received') li.appendChild(el('p','rnote','Answer received — thanks! We\u2019re back on it.'));
+      if(r.status==='Needs info'){
+        var q=el('div','rq'); q.appendChild(el('p','rq-label','We have a question')); q.appendChild(el('p','rq-text',r.question||'Check your email for our question.'));
+        var qid='ans-'+r.id, ql=el('label',null,'Your answer'), qa=el('textarea'); ql.htmlFor=qid; qa.id=qid; qa.maxLength=4000;
+        var qs=el('button','btn btn-main btn-sm','Send answer'); qs.type='button'; var qm=el('p','form-status'); qm.setAttribute('role','status');
+        q.appendChild(ql); q.appendChild(qa); q.appendChild(qs); q.appendChild(qm); li.appendChild(q);
+        qs.addEventListener('click',function(){
+          if(busy)return; if(qa.value.trim().length<2){qm.className='form-status bad';qm.textContent='Type your answer first.';return;}
+          busy=true; qs.disabled=true;
+          api('POST',{action:'answer',requestId:r.id,answer:qa.value}).then(function(){load();})
+            .catch(function(e){qm.className='form-status bad';qm.textContent=e.message;qs.disabled=false;})
+            .finally(function(){busy=false;});
+        });
+      }
       if(r.status==='Delivered'){
         var acts=el('div','racts'), ok=el('button','btn btn-main btn-sm','Approve'), ch=el('button','btn btn-soft btn-sm','Request changes');
         ok.type='button'; ch.type='button'; acts.appendChild(ok); acts.appendChild(ch); li.appendChild(acts);

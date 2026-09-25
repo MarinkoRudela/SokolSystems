@@ -5,12 +5,13 @@
 //   POST /api/portal {c, action:"create", ...}    -> new request (+ optional small files)
 //   POST /api/portal {c, action:"approve", requestId}
 //   POST /api/portal {c, action:"revise",  requestId, note}
+//   POST /api/portal {c, action:"answer",  requestId, answer}   (reply to a Needs info question)
 // Env: AIRTABLE_TOKEN (read+write), AIRTABLE_BASE_ID.
 
 const CLIENTS = 'tbloJmuK4GVVz3ZrU', REQS = 'tblm5o91bZlNIXHGh';
 const C = { name: 'fldGq2o6mNqKxA720', status: 'fld1Q2C8VOcA1b5Fq', drive: 'fldUdUTB1vAsTxfRL', guide: 'fldxUywS2Z1iPoOcR', requests: 'fldg2gDHEkeokRnXt' };
 const R = { title: 'fldHYOaV2M8JIWsyJ', client: 'fldrjEMKK2nCN7r8s', type: 'fldR5VxCVB4CE4Tfa', brief: 'fldCVL7mLSq1t5HTh', platforms: 'fldUQh0oUi3nWr9xz',
-            sizes: 'fldfe4mOOsR6H7MwR', files: 'fld9HJ8EnwxcatsQx', status: 'fldQdbNa8d1gEgR6m', delivery: 'fldrQ55bcoeGQJJol', notes: 'fldEr7VAXfT9t93wj', deliveredOn: 'fldVISA4yqIH0Wp2J' };
+            sizes: 'fldfe4mOOsR6H7MwR', files: 'fld9HJ8EnwxcatsQx', status: 'fldQdbNa8d1gEgR6m', delivery: 'fldrQ55bcoeGQJJol', notes: 'fldEr7VAXfT9t93wj', deliveredOn: 'fldVISA4yqIH0Wp2J', question: 'fldijVbhic2iMm0zW', answer: 'fldTHGQmE5cRN8fuz' };
 const TYPES = ['Static ad', 'Video ad', 'UGC-style ad', 'Product visual', 'Carousel', 'Hook variations', 'Social content', 'Other'];
 const PLATFORMS = ['Meta (Facebook/Instagram)', 'TikTok', 'YouTube', 'Google', 'Website', 'Organic social', 'Other'];
 const SIZES = ['1:1 square', '4:5 portrait', '9:16 vertical', '16:9 landscape'];
@@ -56,6 +57,7 @@ async function clientRequests(ids) {
     return { id: r.id, created: r.createdTime, title: f[R.title] || 'Untitled request', type: sel(f[R.type]), status: sel(f[R.status]) || 'New',
              brief: f[R.brief] || '', platforms: (f[R.platforms] || []).map(sel), sizes: (f[R.sizes] || []).map(sel),
              delivery: f[R.delivery] || '', deliveredOn: f[R.deliveredOn] || '', notes: f[R.notes] || '',
+             question: f[R.question] || '', answer: f[R.answer] || '',
              files: (f[R.files] || []).length };
   }).sort((a, b) => (b.created || '').localeCompare(a.created || ''));
 }
@@ -154,6 +156,19 @@ export default async function handler(req, res) {
         fields = { [R.status]: 'Revision requested', [R.notes]: ((f[R.notes] ? f[R.notes] + '\n\n' : '') + `[${stamp}] ${note}`).slice(0, 10000) };
       }
       await at(`${REQS}/${b.requestId}`, { method: 'PATCH', body: JSON.stringify({ typecast: true, fields }) });
+      return res.status(200).json({ ok: true });
+    }
+
+    if (b.action === 'answer') {
+      if (status === 'Cancelled') return res.status(403).json({ error: 'Your subscription has ended.' });
+      if (!validRec(b.requestId) || !owned.has(b.requestId)) return res.status(404).json({ error: 'Request not found.' });
+      const rec = await at(`${REQS}/${b.requestId}?returnFieldsByFieldId=true`);
+      const f = rec.fields || {};
+      if (!(f[R.client] || []).includes(client.id)) return res.status(404).json({ error: 'Request not found.' });
+      if (sel(f[R.status]) !== 'Needs info') return res.status(409).json({ error: 'There\'s no open question on this request.' });
+      const answer = clean(b.answer, 4000);
+      if (answer.length < 2) return res.status(400).json({ error: 'Type your answer first.' });
+      await at(`${REQS}/${b.requestId}`, { method: 'PATCH', body: JSON.stringify({ typecast: true, fields: { [R.answer]: answer, [R.status]: 'Info received' } }) });
       return res.status(200).json({ ok: true });
     }
 
