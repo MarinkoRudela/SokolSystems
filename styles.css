@@ -295,3 +295,10 @@ h2 em{display:block}
 .rq-label{font:700 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#8A5A12;margin-bottom:6px}
 .rq-text{font-size:16px;color:var(--navy);margin-bottom:10px;white-space:pre-wrap}
 .rq label{margin-bottom:6px}.rq textarea{min-height:80px;margin-bottom:10px}
+.psite{background:var(--paper);border:1.5px solid var(--coral);border-radius:20px;padding:22px 24px;margin-bottom:26px;box-shadow:var(--shadow)}
+.psite[hidden]{display:none}
+.psite-h{font-size:24px;letter-spacing:-.02em;margin-bottom:6px}
+.psite-p{font-size:16px;color:var(--navy-soft);margin-bottom:14px;max-width:62ch}
+.portal .psite-form{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.psite-form input{flex:1 1 240px;min-width:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

@@ -36,6 +36,16 @@
       </nav>
     </section>
     <p id="p-banner" class="pbanner" hidden></p>
+    <section id="p-site" class="psite" aria-labelledby="site-h" hidden>
+      <h2 id="site-h" class="psite-h">What's your website?</h2>
+      <p class="psite-p">We study your site and current ads before your first request, so you won't have to explain your brand from scratch.</p>
+      <form id="site-form" class="psite-form" novalidate>
+        <label for="s-web" class="sr-only">Your website</label>
+        <input id="s-web" name="website" type="url" inputmode="url" autocomplete="url" maxlength="300" placeholder="yourcompany.com">
+        <button type="submit" class="btn btn-main btn-sm">Save</button>
+      </form>
+      <p class="form-status" id="site-status" role="status" aria-live="polite"></p>
+    </section>
 
     <div class="pgrid">
       <section class="pcard" aria-labelledby="new-h">

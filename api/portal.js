@@ -6,10 +6,11 @@
 //   POST /api/portal {c, action:"approve", requestId}
 //   POST /api/portal {c, action:"revise",  requestId, note}
 //   POST /api/portal {c, action:"answer",  requestId, answer}   (reply to a Needs info question)
+//   POST /api/portal {c, action:"website", website}              (only if their record has no website yet)
 // Env: AIRTABLE_TOKEN (read+write), AIRTABLE_BASE_ID.
 
 const CLIENTS = 'tbloJmuK4GVVz3ZrU', REQS = 'tblm5o91bZlNIXHGh';
-const C = { name: 'fldGq2o6mNqKxA720', status: 'fld1Q2C8VOcA1b5Fq', drive: 'fldUdUTB1vAsTxfRL', guide: 'fldxUywS2Z1iPoOcR', requests: 'fldg2gDHEkeokRnXt' };
+const C = { name: 'fldGq2o6mNqKxA720', status: 'fld1Q2C8VOcA1b5Fq', drive: 'fldUdUTB1vAsTxfRL', guide: 'fldxUywS2Z1iPoOcR', website: 'fld3SQJEoAbRfozKe', requests: 'fldg2gDHEkeokRnXt' };
 const R = { title: 'fldHYOaV2M8JIWsyJ', client: 'fldrjEMKK2nCN7r8s', type: 'fldR5VxCVB4CE4Tfa', brief: 'fldCVL7mLSq1t5HTh', platforms: 'fldUQh0oUi3nWr9xz',
             sizes: 'fldfe4mOOsR6H7MwR', files: 'fld9HJ8EnwxcatsQx', status: 'fldQdbNa8d1gEgR6m', delivery: 'fldrQ55bcoeGQJJol', notes: 'fldEr7VAXfT9t93wj', deliveredOn: 'fldVISA4yqIH0Wp2J', question: 'fldijVbhic2iMm0zW', answer: 'fldTHGQmE5cRN8fuz' };
 const TYPES = ['Static ad', 'Video ad', 'UGC-style ad', 'Product visual', 'Carousel', 'Hook variations', 'Social content', 'Other'];
@@ -84,7 +85,7 @@ export default async function handler(req, res) {
       const f = client.fields || {};
       const requests = await clientRequests(f[C.requests] || []);
       return res.status(200).json({
-        client: { name: f[C.name] || 'there', status: sel(f[C.status]) || 'Active', drive: f[C.drive] || '', guide: f[C.guide] || '', billing: BILLING },
+        client: { name: f[C.name] || 'there', status: sel(f[C.status]) || 'Active', drive: f[C.drive] || '', guide: f[C.guide] || '', billing: BILLING, needsWebsite: !f[C.website] },
         options: { types: TYPES, platforms: PLATFORMS, sizes: SIZES, maxFiles: MAX_FILES, maxBytes: MAX_BYTES },
         requests
       });
@@ -169,6 +170,17 @@ export default async function handler(req, res) {
       const answer = clean(b.answer, 4000);
       if (answer.length < 2) return res.status(400).json({ error: 'Type your answer first.' });
       await at(`${REQS}/${b.requestId}`, { method: 'PATCH', body: JSON.stringify({ typecast: true, fields: { [R.answer]: answer, [R.status]: 'Info received' } }) });
+      return res.status(200).json({ ok: true });
+    }
+
+    if (b.action === 'website') {
+      if (cf[C.website]) return res.status(409).json({ error: 'We already have your website. Email us if it has changed.' });
+      let v = clean(b.website, 300);
+      if (v && !/^https?:\/\//i.test(v)) v = 'https://' + v;
+      let url = null;
+      try { const u = new URL(v); if (/^https?:$/.test(u.protocol) && /\.[a-z]{2,}$/i.test(u.hostname)) url = u.toString(); } catch {}
+      if (!url) return res.status(400).json({ error: 'That doesn\'t look like a website address. Try something like yourcompany.com.' });
+      await at(`${CLIENTS}/${client.id}`, { method: 'PATCH', body: JSON.stringify({ fields: { [C.website]: url } }) });
       return res.status(200).json({ ok: true });
     }
 

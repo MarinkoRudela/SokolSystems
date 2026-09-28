@@ -74,6 +74,7 @@
       var msgs={'Paused':'Your subscription is paused. Resume it in Billing to send new requests.','Payment issue':'Your latest payment didn\u2019t go through. Update your card in Billing to keep requests open.','Cancelled':'Your subscription has ended. Your delivered files stay yours in your drive folder.'};
       b.hidden=!msgs[s]; b.textContent=msgs[s]||'';
       Array.prototype.forEach.call(form.elements,function(x){x.disabled=!!msgs[s]});
+      document.getElementById('p-site').hidden=!j.client.needsWebsite;
       fillOptions(); renderList();
     });
   }
@@ -81,6 +82,15 @@
     var files=Array.prototype.slice.call(input.files||[]);
     return Promise.all(files.map(function(f){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res({name:f.name,type:f.type,data:String(r.result).split(',')[1]||''})};r.onerror=rej;r.readAsDataURL(f);});}));
   }
+  var sf=document.getElementById('site-form'), ss=document.getElementById('site-status');
+  sf.addEventListener('submit',function(e){
+    e.preventDefault(); if(busy)return; var v=sf.website.value.trim();
+    if(v.length<4){ss.className='form-status bad';ss.textContent='Add your website address first.';return;}
+    busy=true; var b=sf.querySelector('button'); b.disabled=true;
+    api('POST',{action:'website',website:v}).then(function(){document.getElementById('p-site').hidden=true;})
+      .catch(function(e){ss.className='form-status bad';ss.textContent=e.message;})
+      .finally(function(){busy=false;b.disabled=false;});
+  });
   var form=document.getElementById('req-form'), st=document.getElementById('req-status');
   form.addEventListener('submit',function(e){
     e.preventDefault(); if(busy)return;
