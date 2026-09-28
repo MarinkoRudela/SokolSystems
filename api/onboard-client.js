@@ -67,6 +67,21 @@ async function driveShare(token, fileId, email) {
   if (!r.ok) throw new Error('Drive share failed: ' + (await r.text()));
 }
 
+// Pulls the "website" custom field off a Checkout Session. Dashboard-created fields get an
+// auto-generated key, so match on the key OR the label. Returns a normalized https URL or null.
+export function websiteFromSession(s) {
+  const cf = Array.isArray(s && s.custom_fields) ? s.custom_fields : [];
+  const hit = cf.find(c => c && c.text && (/website|site|url/i.test(c.key || '') || /website|site|url/i.test((c.label && c.label.custom) || '')));
+  let v = hit && String(hit.text.value || '').trim();
+  if (!v) return null;
+  if (!/^https?:\/\//i.test(v)) v = 'https://' + v;
+  try {
+    const u = new URL(v);
+    if (!/\./.test(u.hostname)) return null;
+    return u.toString();
+  } catch { return null; }
+}
+
 async function airtable(env, path, opts = {}) {
   const r = await fetch(`https://api.airtable.com/v0/${env.AIRTABLE_BASE_ID}/${path}`, {
     ...opts, signal: AbortSignal.timeout(5000),
@@ -125,6 +140,9 @@ export default async function handler(req, res) {
     await driveShare(token, folder.id, email);
 
     const fields = { 'Drive Folder': folder.webViewLink };
+    // Website entered at checkout (Stripe custom field) -> Airtable Website, unless already set.
+    const site = websiteFromSession(s);
+    if (site && !f['Website']) fields['Website'] = site;
     if (env.ONBOARDING_GUIDE_URL) fields['Notion Onboarding Page'] = env.ONBOARDING_GUIDE_URL;
     // Every client gets a private portal (send requests, track status, approve deliveries).
     let formLink = f['Request Form Link'];
