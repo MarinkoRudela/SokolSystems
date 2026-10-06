@@ -324,6 +324,20 @@ h2 em{display:block}
 .btn-main{position:relative;overflow:hidden}
 .btn-main::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);transition:left .6s ease;pointer-events:none}
 .btn-main:hover::after{left:120%}
+/* tile effects */
+.js-motion .rv-flip{translate:0 0;transform:perspective(1000px) rotateX(72deg);transform-origin:50% 0;transition:opacity .7s ease var(--d,0ms),transform 1s cubic-bezier(.2,.9,.25,1.15) var(--d,0ms)}
+.js-motion .rv-flip.in{transform:perspective(1000px) rotateX(0)}
+.mosaic{position:absolute;inset:0;display:grid;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:3}
+.mosaic i{background:#F6EEDF;box-shadow:inset 0 0 0 1px rgba(251,246,238,.9);transition:opacity .55s ease var(--t),transform .6s cubic-bezier(.5,0,.75,0) var(--t)}
+.mosaic i:nth-child(7n+3){background:#F3DED2}.mosaic i:nth-child(11n+5){background:#E9E6F3}
+.mosaic.go i{opacity:0;transform:scale(.2) rotate(35deg)}
+.js-motion .marquee.chips-in .chip{opacity:0;scale:.55;rotate:-10deg;translate:0 -26px;transition:opacity .45s ease calc(var(--i,0)*70ms),scale .6s cubic-bezier(.3,1.5,.5,1) calc(var(--i,0)*70ms),rotate .6s ease calc(var(--i,0)*70ms),translate .6s cubic-bezier(.3,1.5,.5,1) calc(var(--i,0)*70ms)}
+.js-motion .marquee.chips-in.in .chip{opacity:1;scale:1;rotate:0deg;translate:0 0}
+.js-motion .plan.rv li{opacity:0;translate:0 14px;transition:opacity .45s ease calc(var(--i,0)*70ms + 350ms),translate .5s cubic-bezier(.2,.7,.2,1) calc(var(--i,0)*70ms + 350ms)}
+.js-motion .plan.rv li::before{scale:0;transition:scale .35s cubic-bezier(.3,1.7,.5,1) calc(var(--i,0)*70ms + 550ms)}
+.js-motion .plan.rv.in li{opacity:1;translate:0 0}
+.js-motion .plan.rv.in li::before{scale:1}
+@media(prefers-reduced-motion:reduce){.mosaic{display:none}}
 #how,#math{overflow-x:clip}
 @media(max-width:900px){.js-motion .rv-left,.js-motion .rv-right{translate:0 34px;rotate:0deg}}
 @media(prefers-reduced-motion:reduce){.hero-falcon{animation:none}.scroll-bar{display:none}}

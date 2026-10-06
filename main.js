@@ -88,7 +88,7 @@
   // 1) Reveal on scroll. Anything already on screen at load stays put (no flash); the rest rises in.
   var groups=[
     ['#problem h2, #problem .lede, #how h2, #how .lede, #math h2, #math .lede, #pricing h2, #pricing .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
-    ['.clouds .cloud, .cloud','rv'],
+    ['.cards3 .cloud','rv rv-flip'],
     ['.row-text','rv rv-left'],
     ['.row .frame','rv rv-right'],
     ['.reel','rv rv-zoom'],
@@ -124,6 +124,7 @@
   function sweep(){
     if(!pending.length) return;
     pending=pending.filter(function(el){
+      if(el.mosaic){ if(!el.mosaic.isConnected) return false; if(el.el.getBoundingClientRect().top<vh*0.88){ el.mosaic.classList.add('go'); setTimeout(function(){el.mosaic.remove();},1700); return false; } return true; }
       if(el.classList.contains('in')) return false;
       if(el.getBoundingClientRect().top<vh*0.88){
         el.classList.add('in'); io.unobserve(el);
@@ -176,7 +177,49 @@
   window.addEventListener('hashchange',function(){ setTimeout(frame,50); });
   frame();
 
-  // 4) Gentle 3D tilt on the "how it works" windows (mouse/trackpad only).
+  // 4) Tile effects.
+  //   a) Mosaic: a grid of cream tiles over the app windows and the video that dissolves in random order.
+  function mosaic(el,cols,rows){
+    if(el.getBoundingClientRect().top<vh*0.92) return;
+    if(getComputedStyle(el).position==='static') el.style.position='relative';
+    var g=document.createElement('div'); g.className='mosaic'; g.setAttribute('aria-hidden','true');
+    g.style.gridTemplateColumns='repeat('+cols+',1fr)'; g.style.gridTemplateRows='repeat('+rows+',1fr)';
+    for(var k=0;k<cols*rows;k++){ var t=document.createElement('i'); t.style.setProperty('--t',Math.round(Math.random()*650)+'ms'); g.appendChild(t); }
+    el.appendChild(g);
+    var o=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ o.disconnect(); setTimeout(function(){ g.classList.add('go'); setTimeout(function(){ g.remove(); },1700); },250); } },{threshold:.3});
+    o.observe(el);
+    pending.push({mosaic:g,el:el});
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.row .frame'),function(f){ mosaic(f,8,6); });
+  var reelFrame=document.querySelector('.reel-frame'); if(reelFrame) mosaic(reelFrame,12,7);
+
+  //   b) Platform chips drop in one by one the first time the ticker scrolls into view.
+  var marquee=document.querySelector('.marquee');
+  if(marquee&&marquee.getBoundingClientRect().top>vh*0.92){
+    marquee.classList.add('chips-in');
+    Array.prototype.forEach.call(marquee.querySelectorAll('.chip'),function(c,k){ c.style.setProperty('--i',k%10); });
+    new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ marquee.classList.add('in'); o.disconnect(); } },{threshold:.4}).observe(marquee);
+  }
+
+  //   c) Pricing checklist tiles in, ticks draw on.
+  Array.prototype.forEach.call(document.querySelectorAll('.plan li'),function(li,k){ li.style.setProperty('--i',k); });
+
+  // 5) Disappearing: the hero and each section intro dissolve (fade + blur + drift) as they leave the top.
+  var fades=[].slice.call(document.querySelectorAll('.hero .wrap, section .center > h2, section.center > .wrap > h2, section .center .ribbon, section.center > .wrap > .ribbon, section.center > .wrap > .lede, #how .center .lede'));
+  function dissolve(){
+    var top=90;
+    fades.forEach(function(el){
+      var r=el.getBoundingClientRect(); if(r.bottom<-50||r.top>vh*0.6) { if(el.__f){ el.style.opacity='';el.style.filter='';el.style.transform='';el.__f=false;} return; }
+      var span=Math.max(140,r.height*0.9), o=Math.max(0,Math.min(1,(r.bottom-top)/span));
+      if(o>=1){ if(el.__f){ el.style.opacity='';el.style.filter='';el.style.transform='';el.__f=false;} return; }
+      if(el.classList.contains('rv')&&!el.classList.contains('in')) return;
+      el.__f=true; el.style.transition='none';
+      el.style.opacity=o.toFixed(3); el.style.filter='blur('+((1-o)*8).toFixed(1)+'px)'; el.style.transform='translateY('+(-(1-o)*24).toFixed(1)+'px) scale('+(0.97+0.03*o).toFixed(3)+')';
+    });
+  }
+  window.addEventListener('scroll',function(){ requestAnimationFrame(dissolve); },{passive:true});
+
+  // 6) Gentle 3D tilt on the "how it works" windows (mouse/trackpad only).
   if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){
     Array.prototype.forEach.call(document.querySelectorAll('.frame .win'),function(w){
       var f=w.parentElement;
