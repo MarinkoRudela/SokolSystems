@@ -1,0 +1,29 @@
+name: Archive site images into the repo
+on:
+  push:
+    paths: ['.github/workflows/archive-media.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download images from Higgsfield CDN
+        run: |
+          set -euo pipefail
+          mkdir -p media
+          base="https://d2ol7oe51mr4n9.cloudfront.net/user_3BuGQFUJddg2WAwVdsGudVXAiOh"
+          for id in 01db2068-8bb0-45d5-81f1-fd350db9e91d 46eded87-b4c3-40a7-aac9-ff9a2842df7d b29fd19e-37fa-4af9-a0b7-ff155d8b31fd e8ad7c6e-0b71-4e67-af8d-e341c1d4f92e; do
+            curl -fsSL -o "media/$id.webp" "$base/$id.webp"
+            test "$(head -c 4 media/$id.webp)" = "RIFF"
+          done
+          ls -la media
+      - name: Commit
+        run: |
+          git config user.name "Sokol Systems bot"
+          git config user.email "marinko@sokolsystems.io"
+          git add media
+          git diff --cached --quiet && echo "nothing new" || git commit -m "Archive site images in repo (media/)"
+          git push
