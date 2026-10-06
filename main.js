@@ -78,3 +78,113 @@
     new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(!userPaused) play(); } else v.pause(); }); },{threshold:.35}).observe(v);
   } else if(!reduce){ play(); }
 })();
+
+(function(){
+  // ---- scroll & motion effects (homepage). Skipped entirely for prefers-reduced-motion. ----
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)||!document.querySelector('.hero')) return;
+  var root=document.documentElement, vh=window.innerHeight;
+
+  // 1) Reveal on scroll. Anything already on screen at load stays put (no flash); the rest rises in.
+  var groups=[
+    ['#problem h2, #problem .lede, #how h2, #how .lede, #math h2, #math .lede, #pricing h2, #pricing .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
+    ['.clouds .cloud, .cloud','rv'],
+    ['.row-text','rv rv-left'],
+    ['.row .frame','rv rv-right'],
+    ['.reel','rv rv-zoom'],
+    ['.receipt','rv rv-print'],
+    ['.stamp','rv rv-stamp'],
+    ['.plan','rv rv-zoom'],
+    ['#faq details','rv'],
+    ['.contact-grid > *','rv']
+  ];
+  var seen=new Set(), targets=[];
+  groups.forEach(function(g){
+    var list=document.querySelectorAll(g[0]);
+    Array.prototype.forEach.call(list,function(el,i){
+      if(seen.has(el)) return; seen.add(el);
+      if(el.getBoundingClientRect().top<vh*0.92) return;           // already visible: leave it alone
+      g[1].split(' ').forEach(function(c){el.classList.add(c)});
+      var sib=el.parentElement?Array.prototype.indexOf.call(el.parentElement.children,el):i;
+      el.style.setProperty('--d',(Math.min(sib,5)*90)+'ms');        // stagger siblings
+      targets.push(el);
+    });
+  });
+  root.classList.add('js-motion');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in'); io.unobserve(e.target);
+      if(e.target.classList.contains('rv-print')||e.target.classList.contains('rv-stamp')) countUp(e.target);
+    });
+  },{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(function(el){io.observe(el)});
+  // Safety net: anything scrolled past or jumped over (menu links, fast scrolls, clipped elements) is revealed.
+  var pending=targets.slice();
+  function sweep(){
+    if(!pending.length) return;
+    pending=pending.filter(function(el){
+      if(el.classList.contains('in')) return false;
+      if(el.getBoundingClientRect().top<vh*0.88){
+        el.classList.add('in'); io.unobserve(el);
+        if(el.classList.contains('rv-print')||el.classList.contains('rv-stamp')) countUp(el);
+        return false;
+      }
+      return true;
+    });
+  }
+
+  // 2) Count-up for the money figures on the receipts and the stamp.
+  function countUp(scope){
+    var bs=scope.matches('b')?[scope]:scope.querySelectorAll('.total b, b');
+    Array.prototype.forEach.call(bs,function(b){
+      var nodes=[];
+      b.childNodes.forEach(function(n){ if(n.nodeType===3&&/\d/.test(n.nodeValue)) nodes.push({n:n,t:n.nodeValue}); });
+      if(!nodes.length) return;
+      var start=null, dur=1300;
+      function fmt(v){ return Math.round(v).toLocaleString('en-US'); }
+      function step(ts){
+        if(!start) start=ts; var p=Math.min(1,(ts-start)/dur), e=1-Math.pow(1-p,3);
+        nodes.forEach(function(o){ o.n.nodeValue=o.t.replace(/\d[\d,]*/g,function(m){ var f=+m.replace(/,/g,''); return fmt(f*e); }); });
+        if(p<1) requestAnimationFrame(step); else nodes.forEach(function(o){o.n.nodeValue=o.t;});
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  // 3) Scroll-linked effects: progress bar, sticky nav state, hero parallax + falcon flight, footer parallax.
+  var bar=document.createElement('div'); bar.className='scroll-bar'; bar.setAttribute('aria-hidden','true'); document.body.appendChild(bar);
+  var nav=document.querySelector('.site-nav'), hero=document.querySelector('.hero'), falcon=document.querySelector('.hero-falcon'), scene=document.querySelector('.scene');
+  var ticking=false;
+  function frame(){
+    ticking=false;
+    sweep();
+    var y=window.scrollY, max=document.documentElement.scrollHeight-vh;
+    bar.style.transform='scaleX('+(max>0?Math.min(1,y/max):0)+')';
+    if(nav) nav.classList.toggle('scrolled',y>24);
+    if(hero&&y<vh*1.4){
+      hero.style.setProperty('--hy',(y*0.35).toFixed(1)+'px');
+      if(falcon){ falcon.style.translate=(y*0.45).toFixed(1)+'px '+(-y*0.55).toFixed(1)+'px'; falcon.style.rotate=(-y*0.012).toFixed(2)+'deg'; }
+    }
+    if(scene){
+      var r=scene.getBoundingClientRect();
+      if(r.top<vh&&r.bottom>0) scene.style.setProperty('--sy',((r.top-vh)*0.18).toFixed(1)+'px');
+    }
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(frame);} },{passive:true});
+  window.addEventListener('resize',function(){ vh=window.innerHeight; },{passive:true});
+  window.addEventListener('hashchange',function(){ setTimeout(frame,50); });
+  frame();
+
+  // 4) Gentle 3D tilt on the "how it works" windows (mouse/trackpad only).
+  if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    Array.prototype.forEach.call(document.querySelectorAll('.frame .win'),function(w){
+      var f=w.parentElement;
+      f.addEventListener('pointermove',function(e){
+        var r=f.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, yy=(e.clientY-r.top)/r.height-.5;
+        w.style.transform='perspective(900px) rotateY('+(x*7).toFixed(2)+'deg) rotateX('+(-yy*7).toFixed(2)+'deg) translateZ(0)';
+      });
+      f.addEventListener('pointerleave',function(){ w.style.transform=''; });
+    });
+  }
+})();
