@@ -55,7 +55,7 @@
   // hero typing demo (skipped when the visitor prefers reduced motion)
   var el=document.getElementById('typed'); if(!el) return;
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var lines=['Three static ads for our summer sale, in 4:5 and 9:16','A UGC-style video for our new serum launch','Product shots on marble, soft morning light','Five new hooks for our best-selling ad','A carousel explaining how our app works'];
+  var lines=['Our best UGC video. Five new hooks, same story.','This reel went viral. Four more in the same style.','Our top static ad. Same angle, new visuals, 4:5 + 9:16.','Our winning carousel, turned into a 15-second video.','Our best-selling ad is wearing out. Fresh versions, please.'];
   var i=0,j=lines[0].length,del=true;
   function tick(){
     var s=lines[i];

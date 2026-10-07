@@ -56,7 +56,8 @@ section{padding:110px 0;position:relative}
 .hero-falcon{position:absolute;left:-60px;bottom:-40px;width:min(46vw,560px);mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 72%);mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 72%);pointer-events:none}
 .hero .wrap{position:relative;z-index:1}
 .strike{display:inline-block;font:500 17px/1 var(--sans);color:var(--coral-deep);background:rgba(255,236,224,.85);padding:12px 18px;border-radius:10px;text-decoration:line-through;text-decoration-thickness:1.5px;margin-bottom:28px}
-.hero h1{font-size:clamp(50px,8vw,112px);max-width:12ch;margin:0 auto}
+.hero h1{font-size:clamp(44px,6.6vw,96px);max-width:17ch;margin:0 auto}
+.hero .hero-lede{max-width:40ch;margin:22px auto 0;font-size:clamp(18px,1.6vw,21px);color:var(--navy-soft)}
 .hero h1 em{display:block;font-size:.98em}
 .request{max-width:720px;margin:40px auto 0;background:#FFF7EE;border:1.5px solid #EDCBBB;border-radius:22px;padding:22px 26px 20px;text-align:left;box-shadow:var(--shadow)}
 .request small{display:block;font:700 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#B7822F;margin-bottom:12px}
@@ -231,7 +232,7 @@ body.page .site-nav{margin-bottom:40px}
 .ribbon{z-index:0}
 .hero p{margin-left:auto;margin-right:auto}
 .hero h1{max-width:none}
-@media(min-width:700px){.hero h1 em{white-space:nowrap}}
+@media(min-width:700px){.hero h1 em{white-space:nowrap;font-size:.84em}}
 h2 em{display:block}
 .final h2{max-width:none}
 .tl p{margin-left:0;margin-right:0}

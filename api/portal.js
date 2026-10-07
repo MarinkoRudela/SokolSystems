@@ -13,7 +13,7 @@ const CLIENTS = 'tbloJmuK4GVVz3ZrU', REQS = 'tblm5o91bZlNIXHGh';
 const C = { name: 'fldGq2o6mNqKxA720', status: 'fld1Q2C8VOcA1b5Fq', drive: 'fldUdUTB1vAsTxfRL', guide: 'fldxUywS2Z1iPoOcR', website: 'fld3SQJEoAbRfozKe', requests: 'fldg2gDHEkeokRnXt' };
 const R = { title: 'fldHYOaV2M8JIWsyJ', client: 'fldrjEMKK2nCN7r8s', type: 'fldR5VxCVB4CE4Tfa', brief: 'fldCVL7mLSq1t5HTh', platforms: 'fldUQh0oUi3nWr9xz',
             sizes: 'fldfe4mOOsR6H7MwR', files: 'fld9HJ8EnwxcatsQx', status: 'fldQdbNa8d1gEgR6m', delivery: 'fldrQ55bcoeGQJJol', notes: 'fldEr7VAXfT9t93wj', deliveredOn: 'fldVISA4yqIH0Wp2J', question: 'fldijVbhic2iMm0zW', answer: 'fldTHGQmE5cRN8fuz' };
-const TYPES = ['Static ad', 'Video ad', 'UGC-style ad', 'Product visual', 'Carousel', 'Hook variations', 'Social content', 'Other'];
+const TYPES = ['Winner to multiply', 'Static ad', 'Video ad', 'UGC-style ad', 'Product visual', 'Carousel', 'Hook variations', 'Social content', 'Other'];
 const PLATFORMS = ['Meta (Facebook/Instagram)', 'TikTok', 'YouTube', 'Google', 'Website', 'Organic social', 'Other'];
 const SIZES = ['1:1 square', '4:5 portrait', '9:16 vertical', '16:9 landscape'];
 const FILE_TYPES = /^(image\/(png|jpeg|webp|gif)|application\/pdf|video\/mp4)$/;
