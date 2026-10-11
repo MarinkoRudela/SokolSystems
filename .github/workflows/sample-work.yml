@@ -29,11 +29,20 @@ jobs:
           print(len(glob.glob('media/work/*.webp')), 'webp files')
           PY
           du -sh media/work full
-      - uses: actions/upload-artifact@v4
-        with:
-          name: sample-work-full
-          path: full/
-          retention-days: 7
+      - name: Save full-size originals on a separate branch
+        run: |
+          mv full /tmp/full
+          git config user.name "Marinko Rudela"
+          git config user.email marinko@sokolsystems.io
+          git stash -u -q || true
+          git checkout --orphan sample-work-originals
+          git rm -rfq . 
+          cp /tmp/full/*.jpg .
+          git add *.jpg
+          git commit -qm "Full-size sample work originals"
+          git push -f origin sample-work-originals
+          git checkout -q main
+          git stash pop -q || true
       - name: Commit web images
         run: |
           git config user.name "Marinko Rudela"
