@@ -369,3 +369,9 @@ h2 em{display:block}
 .wr-next{right:max(12px,calc((100vw - 1180px)/2 - 8px))}
 .work-note{font-size:14px;color:var(--navy-soft);margin-top:6px}
 @media(max-width:600px){.wcard{flex-basis:72vw}.wr-btn{display:none}.work-track{gap:14px}}
+.wcard.wvid{flex-basis:calc(clamp(240px,27vw,340px)*.703)}
+.wcard.wvid figure{aspect-ratio:9/16}
+.wcard video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.wcard figure:hover video{transform:scale(1.03)}
+.wcard.wvid .wbrand{display:none}
+@media(max-width:600px){.wcard.wvid{flex-basis:calc(72vw*.703)}}

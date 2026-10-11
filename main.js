@@ -276,3 +276,18 @@
   }
   edges();
 })();
+
+// Sample-work Reels: play muted only while on screen; reduced-motion visitors tap to play.
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('.wcard video')); if(!vids.length) return;
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  vids.forEach(function(v){
+    v.muted=true;
+    if(still){ v.addEventListener('click',function(){ v.paused?v.play():v.pause(); }); return; }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){
+        if(e.isIntersecting&&!v.closest('.wcard').hidden){ v.preload='auto'; var p=v.play(); if(p&&p.catch) p.catch(function(){}); } else v.pause();
+      }); },{threshold:.5}).observe(v);
+    }
+  });
+})();
