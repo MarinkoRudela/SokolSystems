@@ -1,0 +1,17 @@
+name: Archive Katana test reel
+on:
+  push:
+    paths: ['.github/workflows/reel.yml']
+permissions:
+  contents: write
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: sample-work-originals }
+      - run: |
+          curl -sf --retry 3 -o rallen-katana-test-reel.mp4 https://d2ol7oe51mr4n9.cloudfront.net/user_3BuGQFUJddg2WAwVdsGudVXAiOh/cb898830-49fa-43c4-a8a8-4e63ec8d33ef.mp4
+          ls -la rallen-katana-test-reel.mp4
+          git config user.name "Marinko Rudela"; git config user.email marinko@sokolsystems.io
+          git add rallen-katana-test-reel.mp4 && git commit -qm "Katana test reel" && git push origin HEAD:sample-work-originals
