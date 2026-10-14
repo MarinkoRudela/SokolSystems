@@ -65,19 +65,6 @@
   setTimeout(tick,2600);
 })();
 
-(function(){
-  // explainer video: autoplay only when visible and motion is OK; always pausable
-  var v=document.getElementById('reel'), b=document.getElementById('reel-toggle'); if(!v||!b) return;
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var userPaused=reduce;
-  function label(){ var p=v.paused; b.textContent=p?'Play':'Pause'; b.setAttribute('aria-pressed',p?'true':'false'); }
-  function play(){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
-  b.addEventListener('click',function(){ if(v.paused){userPaused=false;play();} else {userPaused=true;v.pause();} });
-  v.addEventListener('play',label); v.addEventListener('pause',label); label();
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ if(!userPaused) play(); } else v.pause(); }); },{threshold:.35}).observe(v);
-  } else if(!reduce){ play(); }
-})();
 
 (function(){
   // ---- scroll & motion effects (homepage). Skipped entirely for prefers-reduced-motion. ----
@@ -87,13 +74,10 @@
 
   // 1) Reveal on scroll. Anything already on screen at load stays put (no flash); the rest rises in.
   var groups=[
-    ['#problem h2, #problem .lede, #how h2, #how .lede, #math h2, #math .lede, #pricing h2, #pricing .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
+    ['#problem h2, #problem .lede, #how h2, #how .lede, #playbook h2, #playbook .lede, #math h2, #math .lede, #pricing h2, #pricing .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
     ['.cards3 .cloud','rv rv-flip'],
     ['.row-text','rv rv-left'],
     ['.row .frame','rv rv-right'],
-    ['.reel','rv rv-zoom'],
-    ['.receipt','rv rv-print'],
-    ['.stamp','rv rv-stamp'],
     ['.plan','rv rv-zoom'],
     ['#faq details','rv'],
     ['.contact-grid > *','rv']
@@ -191,7 +175,6 @@
     pending.push({mosaic:g,el:el});
   }
   Array.prototype.forEach.call(document.querySelectorAll('.row .frame'),function(f){ mosaic(f,8,6); });
-  var reelFrame=document.querySelector('.reel-frame'); if(reelFrame) mosaic(reelFrame,12,7);
 
   //   b) Platform chips drop in one by one the first time the ticker scrolls into view.
   var marquee=document.querySelector('.marquee');
@@ -203,6 +186,29 @@
 
   //   c) Pricing checklist tiles in, ticks draw on.
   Array.prototype.forEach.call(document.querySelectorAll('.plan li'),function(li,k){ li.style.setProperty('--i',k); });
+
+  //   d) The math: the team builds up card by card, the total counts, gets struck out, and Sokol lands.
+  var crew=document.getElementById('crew'), tot=document.getElementById('crew-total');
+  if(crew&&tot&&crew.getBoundingClientRect().top>vh*0.8){
+    var cc=[].slice.call(crew.querySelectorAll('.crew-card'));
+    cc.forEach(function(c,i){ c.style.setProperty('--i',i); });
+    crew.classList.add('armed'); void crew.offsetWidth; crew.classList.add('anim');
+    var co=new IntersectionObserver(function(es){
+      if(!es[0].isIntersecting) return; co.disconnect();
+      crew.classList.remove('armed');
+      var sum=0; tot.textContent='$0';
+      cc.forEach(function(c,i){ var v=+c.getAttribute('data-v'); setTimeout(function(){ var from=sum; sum+=v; tween(tot,from,sum,420); }, i*450+260); });
+    },{threshold:0,rootMargin:'0px 0px -30% 0px'});
+    co.observe(crew);
+  }
+  function tween(el,a,b,d){ var s=null; function st(ts){ if(!s) s=ts; var p=Math.min(1,(ts-s)/d), e=1-Math.pow(1-p,3); el.textContent='$'+Math.round(a+(b-a)*e).toLocaleString('en-US'); if(p<1) requestAnimationFrame(st); } requestAnimationFrame(st); }
+
+  //   e) The "Champion" pill pops once the last window has dissolved in.
+  var champ=document.querySelector('.champ');
+  if(champ&&champ.getBoundingClientRect().top>vh*0.9){
+    var ch=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ ch.disconnect(); setTimeout(function(){ champ.classList.add('pop'); },1300); } },{threshold:1});
+    ch.observe(champ);
+  }
 
   // 5) Disappearing: the hero and each section intro dissolve (fade + blur + drift) as they leave the top.
   var fades=[].slice.call(document.querySelectorAll('.hero .wrap, section .center > h2, section.center > .wrap > h2, section .center .ribbon, section.center > .wrap > .ribbon, section.center > .wrap > .lede, #how .center .lede'));
@@ -290,4 +296,44 @@
       }); },{threshold:.5}).observe(v);
     }
   });
+})();
+
+// The Winner Playbook: swipeable deck. The centered card is "on"; its demo loops only while the deck is on screen.
+(function(){
+  var track=document.getElementById('pb-track'); if(!track) return;
+  var cards=[].slice.call(track.children), prev=document.getElementById('pb-prev'), next=document.getElementById('pb-next'),
+      count=document.getElementById('pb-count'), fill=document.getElementById('pb-fill');
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches, cur=-1, inView=false;
+  track.closest('.playbook').classList.add('pb-ready');
+  function active(){
+    var mid=track.scrollLeft+track.clientWidth/2, best=0, d=1e9;
+    cards.forEach(function(c,i){ var dd=Math.abs(c.offsetLeft+c.offsetWidth/2-mid); if(dd<d){ d=dd; best=i; } });
+    return best;
+  }
+  function set(i){
+    if(i===cur) return; cur=i;
+    cards.forEach(function(c,k){ c.classList.toggle('on',k===i); c.classList.toggle('live',k===i&&inView&&!still); });
+    count.textContent=(i+1)+' / '+cards.length;
+    fill.style.width=((i+1)/cards.length*100)+'%';
+    prev.disabled=i===0; next.disabled=i===cards.length-1;
+  }
+  function go(i){
+    i=Math.max(0,Math.min(cards.length-1,i)); var c=cards[i];
+    track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.offsetWidth)/2,behavior:still?'auto':'smooth'});
+  }
+  prev.addEventListener('click',function(){ go(cur-1); });
+  next.addEventListener('click',function(){ go(cur+1); });
+  track.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){ e.preventDefault(); go(cur+1); }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); go(cur-1); }
+  });
+  cards.forEach(function(c,i){ c.addEventListener('click',function(){ if(i!==cur) go(i); }); });
+  var raf; track.addEventListener('scroll',function(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(function(){ set(active()); }); },{passive:true});
+  window.addEventListener('resize',function(){ var k=cur; cur=-1; set(k<0?active():k); });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      inView=es[0].isIntersecting; var c=cards[cur]; if(c) c.classList.toggle('live',inView&&!still);
+    },{threshold:.3}).observe(track);
+  } else { inView=true; }
+  set(active());
 })();
