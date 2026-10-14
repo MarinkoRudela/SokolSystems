@@ -61,7 +61,8 @@ section{padding:110px 0;position:relative}
 .hero h1 em{display:block;font-size:.98em}
 .request{max-width:720px;margin:40px auto 0;background:#FFF7EE;border:1.5px solid #EDCBBB;border-radius:22px;padding:22px 26px 20px;text-align:left;box-shadow:var(--shadow)}
 .request small{display:block;font:700 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#B7822F;margin-bottom:12px}
-.request .typed{font-size:clamp(19px,2vw,23px);min-height:2.6em;color:var(--navy)}
+.request .typed{font-size:clamp(19px,2vw,23px);min-height:3.2em;color:var(--navy)}
+@media(max-width:400px){.request .typed{min-height:4.8em}}
 .request .caret{display:inline-block;width:2px;height:1.05em;background:var(--coral);vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .hero .cta-row{margin-top:36px}
