@@ -337,3 +337,11 @@
   } else { inView=true; }
   set(active());
 })();
+
+// Footer scene: fetch its large background only when the visitor gets near the bottom.
+(function(){
+  var sc=document.querySelector('.scene'); if(!sc) return;
+  if(!('IntersectionObserver' in window)){ sc.classList.add('bg-in'); return; }
+  var o=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ sc.classList.add('bg-in'); o.disconnect(); } },{rootMargin:'600px 0px'});
+  o.observe(sc);
+})();
