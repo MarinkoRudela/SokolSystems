@@ -1,4 +1,12 @@
 (function(){
+  // ---- problem section: pick the statement variant before motion runs (?ps=1|2|3, default 1) ----
+  var sec=document.getElementById('problem'); if(!sec) return;
+  var v='1', m=/[?&]ps=([123])\b/.exec(location.search); if(m) v=m[1];
+  Array.prototype.forEach.call(sec.querySelectorAll('.ps-v'),function(el){ el.hidden=el.getAttribute('data-v')!==v; });
+  sec.setAttribute('data-variant',v);
+})();
+
+(function(){
   // ---- cookie consent + analytics (loads only after opt-in) ----
   var KEY='sokol-consent', banner=document.getElementById('consent');
   function loadAnalytics(){
@@ -74,8 +82,8 @@
 
   // 1) Reveal on scroll. Anything already on screen at load stays put (no flash); the rest rises in.
   var groups=[
-    ['#problem h2, #problem .lede, #how h2, #how .lede, #playbook h2, #playbook .lede, #math h2, #math .lede, #pricing h2, #pricing .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
-    ['.cards3 .cloud','rv rv-flip'],
+    ['#how h2, #how .lede, #playbook h2, #playbook .lede, #math h2, #math .lede, #pricing h2, #pricing .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
+    ['.ps-v:not([hidden]) .ps-body, .ps-v:not([hidden]) .ps-stat, .ps-wall li, .ps-turn, .ps-cta','rv'],
     ['.row-text','rv rv-left'],
     ['.row .frame','rv rv-right'],
     ['.plan','rv rv-zoom'],
@@ -344,4 +352,24 @@
   if(!('IntersectionObserver' in window)){ sc.classList.add('bg-in'); return; }
   var o=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ sc.classList.add('bg-in'); o.disconnect(); } },{rootMargin:'600px 0px'});
   o.observe(sc);
+})();
+
+(function(){
+  // ---- problem section: preview variants (?ps=1|2|3) + scroll / click-through events ----
+  var sec=document.getElementById('problem'); if(!sec) return;
+  var v=sec.getAttribute('data-variant')||'1';
+  // Events go to Vercel Web Analytics only if the visitor allowed analytics (window.va exists only after opt-in).
+  function ev(name){ if(typeof window.va==='function') window.va('event',{name:name,data:{variant:v}}); }
+  if(!('IntersectionObserver' in window)) return;
+  var viewed=false;
+  new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ viewed=true; ev('problem_view'); o.disconnect(); } },{threshold:.5}).observe(sec.querySelector('.ps-v:not([hidden]) .ps-h')||sec);
+  var end=document.createElement('div'); end.setAttribute('aria-hidden','true'); sec.appendChild(end);
+  new IntersectionObserver(function(es,o){ var e=es[0]; if(viewed&&!e.isIntersecting&&e.boundingClientRect.top<0){ ev('problem_passed'); o.disconnect(); } }).observe(end);
+  var pricing=document.getElementById('pricing');
+  if(pricing) new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ ev('pricing_view'); o.disconnect(); } },{threshold:.3}).observe(pricing);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href]'); if(!a) return;
+    var h=a.getAttribute('href')||'';
+    if(h.indexOf('buy.stripe.com')>-1) ev('checkout_click'); else if(/#pricing$/.test(h)) ev('pricing_click');
+  });
 })();
