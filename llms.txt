@@ -9,7 +9,7 @@ Key facts:
 - Sokol does not need access to a client's ad account and does not guarantee ad performance.
 - A human creative director owns strategy and quality; AI production tools handle the slow parts of production.
 - Also offered: building and installing a custom AI creative system inside a client's own business (book an implementation call).
-- Founder: Marinko Rudela. Based in Zadar, Croatia. Contact: marinko@sokolsystems.io
+- Founder: Marinko Rudela. Contact: marinko@sokolsystems.io
 
 ## Pages
 - [Home](https://sokolsystems.io/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs

@@ -7,7 +7,7 @@ Run from the repo root:  python3 scripts/blog.py
 import json, re, html, glob, datetime, math, os
 
 SITE = "https://sokolsystems.io"
-AUTHOR = {"name": "Marinko Rudela", "bio": "Marinko Rudela runs Sokol Systems, an ad creative subscription that builds new versions of brands’ best-performing ads, plus product shots, photography and UGC-style video. He works from Zadar, Croatia."}
+AUTHOR = {"name": "Marinko Rudela", "bio": "Marinko Rudela runs Sokol Systems, an ad creative subscription that builds new versions of brands’ best-performing ads, plus product shots, photography and UGC-style video."}
 STRIPE = "https://buy.stripe.com/8x2eVd5SX3767u5b2W5Ne00"
 OG_IMAGE = SITE + "/social-preview.jpg?v=2"
 STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
@@ -262,7 +262,7 @@ def llms(posts):
         "- Sokol does not need access to a client's ad account and does not guarantee ad performance.",
         "- A human creative director owns strategy and quality; AI production tools handle the slow parts of production.",
         "- Also offered: building and installing a custom AI creative system inside a client's own business (book an implementation call).",
-        "- Founder: Marinko Rudela. Based in Zadar, Croatia. Contact: marinko@sokolsystems.io",
+        "- Founder: Marinko Rudela. Contact: marinko@sokolsystems.io",
         "",
         "## Pages",
         f"- [Home]({SITE}/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs",
