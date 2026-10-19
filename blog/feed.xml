@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Sokol Systems blog</title>
+  <link>https://sokolsystems.io/blog</link>
+  <atom:link href="https://sokolsystems.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Research and practical notes on ad creative from Sokol Systems.</description>
+  <language>en</language>
+  <item>
+    <title>Why paid ad creative goes wrong: what 167 reviews and forum posts say</title>
+    <link>https://sokolsystems.io/blog/what-goes-wrong-paying-for-ad-creative</link>
+    <guid isPermaLink="true">https://sokolsystems.io/blog/what-goes-wrong-paying-for-ad-creative</guid>
+    <pubDate>Mon, 19 Oct 2026 09:00:00 +0000</pubDate>
+    <description>We read 167 public reviews and forum posts about ads and marketing help that didn’t pay off. Here’s what went wrong most often, what cost the most, and seven questions to ask before you pay anyone.</description>
+  </item>
+  <item>
+    <title>Half the local businesses we checked had a Meta ad running for over a year</title>
+    <link>https://sokolsystems.io/blog/meta-ad-library-35-local-businesses</link>
+    <guid isPermaLink="true">https://sokolsystems.io/blog/meta-ad-library-35-local-businesses</guid>
+    <pubDate>Mon, 19 Oct 2026 09:00:00 +0000</pubDate>
+    <description>We checked the live Meta ads of 35 med spas, restaurants and gyms. Half had an ad running for over a year, and most small advertisers had nothing new beside it.</description>
+  </item>
+  <item>
+    <title>What ad creative costs in 2026: freelancers, design subscriptions, in-house and agencies</title>
+    <link>https://sokolsystems.io/blog/ad-creative-cost-2026</link>
+    <guid isPermaLink="true">https://sokolsystems.io/blog/ad-creative-cost-2026</guid>
+    <pubDate>Mon, 19 Oct 2026 09:00:00 +0000</pubDate>
+    <description>Published prices for the usual ways to get ads made, checked in October 2026: freelancers, design subscriptions, an in-house team and creative agencies, and when each makes sense.</description>
+  </item>
+</channel>
+</rss>

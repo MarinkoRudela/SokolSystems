@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://sokolsystems.io/</loc><lastmod>2026-10-19</lastmod><priority>1.0</priority></url>
   <url><loc>https://sokolsystems.io/pricing</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://sokolsystems.io/blog</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://sokolsystems.io/terms</loc><lastmod>2026-10-15</lastmod><priority>0.3</priority></url>
   <url><loc>https://sokolsystems.io/privacy</loc><lastmod>2026-10-15</lastmod><priority>0.3</priority></url>
+  <url><loc>https://sokolsystems.io/blog/what-goes-wrong-paying-for-ad-creative</loc><lastmod>2026-10-19</lastmod><priority>0.6</priority></url>
+  <url><loc>https://sokolsystems.io/blog/meta-ad-library-35-local-businesses</loc><lastmod>2026-10-19</lastmod><priority>0.6</priority></url>
+  <url><loc>https://sokolsystems.io/blog/ad-creative-cost-2026</loc><lastmod>2026-10-19</lastmod><priority>0.6</priority></url>
 </urlset>

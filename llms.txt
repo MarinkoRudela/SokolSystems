@@ -1,0 +1,26 @@
+# Sokol Systems
+
+> Sokol Systems is an ad creative subscription. Brands send their best-performing ads and social posts, and Sokol turns them into new versions (new hooks, angles, formats and sizes), plus product shots, photography, UGC-style video, edited Reels and social posts.
+
+Key facts:
+- Price: $2,995 per month, one plan. No contract; pause or cancel anytime.
+- Unlimited requests, produced one at a time. Each request is delivered within 48 hours, Monday to Friday (US Eastern Time).
+- Unlimited revisions. Clients own everything delivered.
+- Sokol does not need access to a client's ad account and does not guarantee ad performance.
+- A human creative director owns strategy and quality; AI production tools handle the slow parts of production.
+- Also offered: building and installing a custom AI creative system inside a client's own business (book an implementation call).
+- Founder: Marinko Rudela. Based in Zadar, Croatia. Contact: marinko@sokolsystems.io
+
+## Pages
+- [Home](https://sokolsystems.io/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs
+- [Pricing](https://sokolsystems.io/pricing): the plan, an example month, and a sourced comparison with freelancers, design subscriptions, an in-house team and agencies
+- [Blog](https://sokolsystems.io/blog): research and notes on ad creative
+
+## Blog posts
+- [Why paid ad creative goes wrong: what 167 reviews and forum posts say](https://sokolsystems.io/blog/what-goes-wrong-paying-for-ad-creative): We read 167 public reviews and forum posts about ads and marketing help that didn’t pay off. Here’s what went wrong most often, what cost the most, and seven questions to ask before you pay anyone.
+- [Half the local businesses we checked had a Meta ad running for over a year](https://sokolsystems.io/blog/meta-ad-library-35-local-businesses): We checked the live Meta ads of 35 med spas, restaurants and gyms. Half had an ad running for over a year, and most small advertisers had nothing new beside it.
+- [What ad creative costs in 2026: freelancers, design subscriptions, in-house and agencies](https://sokolsystems.io/blog/ad-creative-cost-2026): Published prices for the usual ways to get ads made, checked in October 2026: freelancers, design subscriptions, an in-house team and creative agencies, and when each makes sense.
+
+## Optional
+- [Terms of Service](https://sokolsystems.io/terms)
+- [Privacy Policy](https://sokolsystems.io/privacy)
