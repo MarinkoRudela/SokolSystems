@@ -1,4 +1,12 @@
 (function(){
+  // ---- old homepage anchors that moved to /pricing ----
+  if(location.pathname==='/'||location.pathname==='/index.html'){
+    if(location.hash==='#pricing'){ location.replace('/pricing'+location.search); return; }
+    if(location.hash==='#implementation'){ location.replace('/pricing'+location.search+'#implementation'); return; }
+  }
+})();
+
+(function(){
   // ---- problem section: pick the statement variant before motion runs (?ps=1|2|3, default 1) ----
   var sec=document.getElementById('problem'); if(!sec) return;
   var v='1', m=/[?&]ps=([123])\b/.exec(location.search); if(m) v=m[1];
@@ -82,7 +90,7 @@
 
   // 1) Reveal on scroll. Anything already on screen at load stays put (no flash); the rest rises in.
   var groups=[
-    ['#how h2, #how .lede, #playbook h2, #playbook .lede, #math h2, #math .lede, #pricing h2, #pricing .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
+    ['#how h2, #how .lede, #playbook h2, #playbook .lede, #math h2, #math .lede, #faq h2, #contact h2, #contact .lede, .final h2, .final .lede, .ribbon','rv'],
     ['.ps-v:not([hidden]) .ps-body, .ps-v:not([hidden]) .ps-stat, .ps-wall li, .ps-turn, .ps-cta','rv'],
     ['.row-text','rv rv-left'],
     ['.row .frame','rv rv-right'],
@@ -365,11 +373,20 @@
   new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ viewed=true; ev('problem_view'); o.disconnect(); } },{threshold:.5}).observe(sec.querySelector('.ps-v:not([hidden]) .ps-h')||sec);
   var end=document.createElement('div'); end.setAttribute('aria-hidden','true'); sec.appendChild(end);
   new IntersectionObserver(function(es,o){ var e=es[0]; if(viewed&&!e.isIntersecting&&e.boundingClientRect.top<0){ ev('problem_passed'); o.disconnect(); } }).observe(end);
-  var pricing=document.getElementById('pricing');
-  if(pricing) new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ ev('pricing_view'); o.disconnect(); } },{threshold:.3}).observe(pricing);
+})();
+
+(function(){
+  // ---- click-through events on every page (only sent if the visitor allowed analytics) ----
+  var sec=document.getElementById('problem');
+  function ev(name){
+    if(typeof window.va!=='function') return;
+    var data={page:location.pathname}; if(sec) data.variant=sec.getAttribute('data-variant')||'1';
+    window.va('event',{name:name,data:data});
+  }
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href]'); if(!a) return;
     var h=a.getAttribute('href')||'';
-    if(h.indexOf('buy.stripe.com')>-1) ev('checkout_click'); else if(/#pricing$/.test(h)) ev('pricing_click');
+    if(h.indexOf('buy.stripe.com')>-1) ev('checkout_click');
+    else if(/^\/pricing(#|$)/.test(h)) ev('pricing_click');
   });
 })();
