@@ -171,8 +171,9 @@ def hub():
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
             {"@type": "ListItem", "position": 2, "name": "Industries", "item": SITE + "/industries"}]}]}
     cards = "".join(
-        f'<li class="hub-card"><a href="/for/{i["slug"]}"><img src="/media/work/{i["samples"][0]}-sm.webp" width="440" height="550" alt="" loading="lazy" decoding="async">'
-        f'<span class="hub-txt"><b>{esc(i["name"])}</b><span>{esc(i["h1em"])}</span></span></a></li>' for i in INDUSTRIES)
+        f'<li class="hub-card"><a href="/for/{i["slug"]}"><img src="/media/work/{i["samples"][0]}-sm.webp" width="440" height="550" alt="" '
+        + ('fetchpriority="high"' if n == 0 else 'loading="lazy"' if n >= 4 else '') + ' decoding="async">'
+        f'<span class="hub-txt"><b>{esc(i["name"])}</b><span>{esc(i["h1em"])}</span></span></a></li>' for n, i in enumerate(INDUSTRIES))
     return (blog.head("Ad Creative by Industry | Sokol Systems", desc, "/industries", extra=ld(graph))
         + '</head>\n<body class="page ind-page">\n' + NAV_HUB + f"""<main id="main">
 <section class="ind-top center">
