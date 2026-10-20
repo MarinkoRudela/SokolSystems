@@ -4,13 +4,16 @@ Add a post: create content/blog/<slug>.html starting with a <!--meta {...}--> JS
 (slug, title, seo_title, description, category, date, updated), then the article body HTML.
 Run from the repo root:  python3 scripts/blog.py
 """
-import json, re, html, glob, datetime, math, os
+import json, re, html, glob, datetime, math, os, sys
+sys.path.insert(0, "content")
+from industries_data import INDUSTRIES
 
 SITE = "https://sokolsystems.io"
 AUTHOR = {"name": "Marinko Rudela", "bio": "Marinko Rudela runs Sokol Systems, an ad creative subscription that builds new versions of brands’ best-performing ads, plus product shots, photography and UGC-style video."}
 STRIPE = "https://buy.stripe.com/8x2eVd5SX3767u5b2W5Ne00"
 OG_IMAGE = SITE + "/social-preview.jpg?v=2"
-STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
+STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/industries", 0.7), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
+NEW_PAGES_DATE = "2026-10-20"
 
 def esc(s):
     return html.escape(s, quote=True)
@@ -60,6 +63,7 @@ NAV = """<a class="skip" href="#main">Skip to content</a>
       <li><a href="/#work">Our work</a></li>
       <li><a href="/#how">How it works</a></li>
       <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/industries">Industries</a></li>
       <li><a href="/blog" aria-current="page">Blog</a></li>
       <li><a href="/#faq">FAQ</a></li>
     </ul></nav>
@@ -74,6 +78,7 @@ FOOT = """<footer>
     <ul class="foot-links">
       <li><a href="%s">Start your subscription</a></li>
       <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/industries">Industries</a></li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/#faq">FAQ</a></li>
       <li><a href="/#contact">Contact</a></li>
@@ -245,7 +250,11 @@ def feed(posts):
 
 def sitemap(posts):
     today = max([p["updated"] for p in posts] + ["2026-10-19"])
-    rows = [f"  <url><loc>{SITE}{path}</loc><lastmod>{today if path in ('/', '/pricing', '/blog') else '2026-10-15'}</lastmod><priority>{pr}</priority></url>" for path, pr in STATIC_PAGES]
+    def lastmod(path):
+        if path == "/industries": return NEW_PAGES_DATE
+        return NEW_PAGES_DATE if path in ("/", "/pricing", "/blog") else "2026-10-15"
+    rows = [f"  <url><loc>{SITE}{path}</loc><lastmod>{lastmod(path)}</lastmod><priority>{pr}</priority></url>" for path, pr in STATIC_PAGES]
+    rows += [f"  <url><loc>{SITE}/for/{i['slug']}</loc><lastmod>{NEW_PAGES_DATE}</lastmod><priority>0.6</priority></url>" for i in INDUSTRIES]
     rows += [f"  <url><loc>{SITE}/blog/{p['slug']}</loc><lastmod>{p['updated']}</lastmod><priority>0.6</priority></url>" for p in posts]
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(rows) + "\n</urlset>\n"
 
@@ -267,7 +276,11 @@ def llms(posts):
         "## Pages",
         f"- [Home]({SITE}/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs",
         f"- [Pricing]({SITE}/pricing): the plan, an example month, and a sourced comparison with freelancers, design subscriptions, an in-house team and agencies",
+        f"- [Industries]({SITE}/industries): the industries Sokol makes ad creative for, with a page for each",
         f"- [Blog]({SITE}/blog): research and notes on ad creative",
+        "",
+        "## Industry pages",
+    ] + [f"- [Ad creative for {i['label']}]({SITE}/for/{i['slug']}): {i['description']}" for i in INDUSTRIES] + [
         "",
         "## Blog posts",
     ] + [f"- [{p['title']}]({SITE}/blog/{p['slug']}): {p['description']}" for p in posts] + [
