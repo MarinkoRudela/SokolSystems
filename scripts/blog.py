@@ -12,7 +12,7 @@ SITE = "https://sokolsystems.io"
 AUTHOR = {"name": "Marinko Rudela", "bio": "Marinko Rudela runs Sokol Systems, an ad creative subscription that builds new versions of brands’ best-performing ads, plus product shots, photography and UGC-style video."}
 STRIPE = "https://buy.stripe.com/8x2eVd5SX3767u5b2W5Ne00"
 OG_IMAGE = SITE + "/social-preview.jpg?v=2"
-STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/industries", 0.7), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
+STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/implementation", 0.8), ("/industries", 0.7), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
 NEW_PAGES_DATE = "2026-10-20"
 
 def esc(s):
@@ -63,6 +63,7 @@ NAV = """<a class="skip" href="#main">Skip to content</a>
       <li><a href="/#work">Our work</a></li>
       <li><a href="/#how">How it works</a></li>
       <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/implementation">Implementation</a></li>
       <li><a href="/industries">Industries</a></li>
       <li><a href="/blog" aria-current="page">Blog</a></li>
       <li><a href="/#faq">FAQ</a></li>
@@ -78,6 +79,7 @@ FOOT = """<footer>
     <ul class="foot-links">
       <li><a href="%s">Start your subscription</a></li>
       <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/implementation">Implementation</a></li>
       <li><a href="/industries">Industries</a></li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/#faq">FAQ</a></li>
@@ -252,6 +254,7 @@ def sitemap(posts):
     today = max([p["updated"] for p in posts] + ["2026-10-19"])
     def lastmod(path):
         if path == "/industries": return NEW_PAGES_DATE
+        if path == "/implementation": return "2026-10-21"
         return NEW_PAGES_DATE if path in ("/", "/pricing", "/blog") else "2026-10-15"
     rows = [f"  <url><loc>{SITE}{path}</loc><lastmod>{lastmod(path)}</lastmod><priority>{pr}</priority></url>" for path, pr in STATIC_PAGES]
     rows += [f"  <url><loc>{SITE}/for/{i['slug']}</loc><lastmod>{NEW_PAGES_DATE}</lastmod><priority>0.6</priority></url>" for i in INDUSTRIES]
@@ -270,12 +273,13 @@ def llms(posts):
         "- Unlimited revisions. Clients own everything delivered.",
         "- Sokol does not need access to a client's ad account and does not guarantee ad performance.",
         "- A human creative director owns strategy and quality; AI production tools handle the slow parts of production.",
-        "- Also offered: building and installing a custom AI creative system inside a client's own business (book an implementation call).",
+        "- Also offered: building and installing a custom AI creative system inside a client's own business (scoped and quoted on an implementation call; no public price).",
         "- Founder: Marinko Rudela. Contact: marinko@sokolsystems.io",
         "",
         "## Pages",
         f"- [Home]({SITE}/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs",
         f"- [Pricing]({SITE}/pricing): the plan, an example month, and a sourced comparison with freelancers, design subscriptions, an in-house team and agencies",
+        f"- [Implementation]({SITE}/implementation): building a custom AI creative system inside a client's own business (brand setup, consistent characters, production workflows, approvals, training); scoped and quoted on a call",
         f"- [Industries]({SITE}/industries): the industries Sokol makes ad creative for, with a page for each",
         f"- [Blog]({SITE}/blog): research and notes on ad creative",
         "",

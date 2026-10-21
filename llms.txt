@@ -8,12 +8,13 @@ Key facts:
 - Unlimited revisions. Clients own everything delivered.
 - Sokol does not need access to a client's ad account and does not guarantee ad performance.
 - A human creative director owns strategy and quality; AI production tools handle the slow parts of production.
-- Also offered: building and installing a custom AI creative system inside a client's own business (book an implementation call).
+- Also offered: building and installing a custom AI creative system inside a client's own business (scoped and quoted on an implementation call; no public price).
 - Founder: Marinko Rudela. Contact: marinko@sokolsystems.io
 
 ## Pages
 - [Home](https://sokolsystems.io/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs
 - [Pricing](https://sokolsystems.io/pricing): the plan, an example month, and a sourced comparison with freelancers, design subscriptions, an in-house team and agencies
+- [Implementation](https://sokolsystems.io/implementation): building a custom AI creative system inside a client's own business (brand setup, consistent characters, production workflows, approvals, training); scoped and quoted on a call
 - [Industries](https://sokolsystems.io/industries): the industries Sokol makes ad creative for, with a page for each
 - [Blog](https://sokolsystems.io/blog): research and notes on ad creative
 

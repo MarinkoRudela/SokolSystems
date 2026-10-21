@@ -824,4 +824,34 @@ h2 em{display:block}
 /* nav with six items: keep labels on one line, drop the least-needed ones on narrower screens */
 .nav ul{gap:clamp(14px,1.5vw,24px);white-space:nowrap}
 @media(max-width:1200px){.nav ul li:last-child{display:none}}
-@media(max-width:1060px){.nav ul li:nth-child(5){display:none}}
+/* implementation offer: homepage band, page components, hero link */
+.hero-impl{font-weight:700;color:var(--navy);text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
+.hero-impl:hover{color:var(--coral-deep)}
+.impl-tag{display:inline-block;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--lav-ink);background:var(--lav);border:1.5px solid #CFC7F5;border-radius:999px;padding:6px 12px;margin-bottom:14px}
+.impl-band{padding:24px 0 88px}
+.impl-band-box{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.35fr 1fr;gap:36px;align-items:center;background:var(--lav);border:1.5px solid #CFC7F5;border-radius:28px;padding:44px 46px}
+.impl-band h2{font-size:clamp(30px,3.6vw,46px)}
+.impl-band-text p{margin-top:14px;color:var(--navy-soft);max-width:56ch}
+.impl-band-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:24px}
+.impl-band-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.impl-band-list li{position:relative;background:#fff;border:1px solid #DCD5F8;border-radius:14px;padding:12px 16px 12px 42px;font-weight:600;color:var(--navy)}
+.impl-band-list li::before{content:"";position:absolute;left:16px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--lav-ink)}
+.impl-card-cta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.impl-card .impl-more{background:none;border:0;padding:12px 0;color:var(--navy)}
+.impl-card .impl-more:hover{background:none;color:var(--coral-deep)}
+.impl-ways{padding:72px 0 16px;background:var(--cream-2)}
+.impl-ways h2{font-size:clamp(32px,4.4vw,56px)}
+.impl-two{list-style:none;padding:0;margin:36px auto 56px;max-width:1000px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.impl-two li{background:var(--paper);border:1px solid var(--rule);border-radius:22px;padding:28px 26px;box-shadow:var(--shadow)}
+.impl-two li.impl-hi{background:var(--lav);border:1.5px solid #CFC7F5}
+.impl-two h3{font-size:24px;letter-spacing:-.02em;margin-bottom:10px}
+.impl-two p{font-size:16.5px;line-height:1.55;color:var(--navy-soft);margin-bottom:12px}
+.impl-steps{grid-template-columns:repeat(4,1fr)}
+.impl-who{padding:16px 0 24px}
+@media(max-width:1100px){.impl-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.impl-band-box{grid-template-columns:1fr;padding:30px 24px;gap:26px}.impl-two{grid-template-columns:1fr}.impl-steps{grid-template-columns:1fr}.impl-ways{padding:56px 0 8px}}
+/* nav with seven items */
+@media(max-width:1540px){.nav ul li:nth-child(7){display:none}}
+@media(max-width:1320px){.nav ul li:nth-child(6){display:none}}
+@media(max-width:1080px){.nav ul li:nth-child(5){display:none}}
+.impl-who .ind-makes{max-width:760px;grid-template-columns:1fr 1fr}@media(max-width:600px){.impl-who .ind-makes{grid-template-columns:1fr}}
