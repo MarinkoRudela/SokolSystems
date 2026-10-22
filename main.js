@@ -43,7 +43,7 @@
   // (the value older visitors gave before ad measurement existed), 'denied' = neither.
   var KEY='sokol-consent', banner=document.getElementById('consent');
   // Meta pixel ID (public, not a secret). Empty = the pixel never loads.
-  var META_PIXEL_ID='';
+  var META_PIXEL_ID='4508811986032663';
   function loadAnalytics(){
     if(window.__vaLoaded) return; window.__vaLoaded=true;
     window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};
