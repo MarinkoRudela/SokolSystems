@@ -15,20 +15,68 @@
 })();
 
 (function(){
-  // ---- cookie consent + analytics (loads only after opt-in) ----
+  // ---- ad attribution: which ad or link brought this visitor ----
+  // Reads utm_* tags from the landing URL. They are only kept in this browser tab
+  // (sessionStorage) after the visitor allows analytics; otherwise they apply to this page only.
+  var F=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var q=new URLSearchParams(location.search), cur={};
+  F.forEach(function(k){ var v=q.get(k); if(v) cur[k]=v.slice(0,120); });
+  if(Object.keys(cur).length) cur.landing_page=location.pathname;
+  var SK='sokol-attr';
+  function stored(){ try{return JSON.parse(sessionStorage.getItem(SK)||'null')}catch(e){return null} }
+  function get(){ return Object.keys(cur).length?cur:(stored()||{}); }
+  function remember(){ if(Object.keys(cur).length){ try{sessionStorage.setItem(SK,JSON.stringify(cur))}catch(e){} } decorate(); }
+  // Pass the tags on to the booking page and checkout, so each booking or purchase shows which ad it came from.
+  function decorate(){
+    var a=get(); if(!a.utm_source) return;
+    [].forEach.call(document.querySelectorAll('a[href*="calendly.com/"],a[href*="buy.stripe.com/"]'),function(el){
+      try{ var u=new URL(el.href); F.forEach(function(k){ if(a[k]) u.searchParams.set(k,a[k]); }); el.href=u.toString(); }catch(e){}
+    });
+  }
+  window.sokolAttribution={get:get,remember:remember};
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',decorate); else decorate();
+})();
+
+(function(){
+  // ---- cookie consent ----
+  // Stored choice: 'all' = analytics + Meta ad measurement, 'granted' = analytics only
+  // (the value older visitors gave before ad measurement existed), 'denied' = neither.
   var KEY='sokol-consent', banner=document.getElementById('consent');
+  // Meta pixel ID (public, not a secret). Empty = the pixel never loads.
+  var META_PIXEL_ID='';
   function loadAnalytics(){
     if(window.__vaLoaded) return; window.__vaLoaded=true;
     window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};
     var s=document.createElement('script'); s.defer=true; s.src='/_vercel/insights/script.js'; document.head.appendChild(s);
   }
+  function loadPixel(){
+    if(!META_PIXEL_ID||window.fbq) return;
+    var n=window.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!window._fbq) window._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    var s=document.createElement('script'); s.async=true; s.src='https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(s);
+    window.fbq('init',META_PIXEL_ID); window.fbq('track','PageView');
+  }
   function choice(){ try{return localStorage.getItem(KEY)}catch(e){return null} }
   function save(v){ try{localStorage.setItem(KEY,v)}catch(e){} }
+  function apply(c){
+    if(c==='all'||c==='granted'){ loadAnalytics(); if(window.sokolAttribution) window.sokolAttribution.remember(); }
+    if(c==='all') loadPixel();
+  }
+  // The ad-measurement option only appears once a pixel ID is set.
+  if(banner&&!META_PIXEL_ID){
+    var allBtn=banner.querySelector('[data-consent="all"]'); if(allBtn) allBtn.remove();
+    var adsTxt=banner.querySelector('.consent-ads'); if(adsTxt) adsTxt.remove();
+    var acc=banner.querySelector('[data-consent="accept"]'); if(acc){ acc.textContent='Allow analytics'; acc.className='btn btn-main'; }
+  }
   if(banner){
     var c=choice();
-    if(c==='granted') loadAnalytics(); else if(!c) banner.hidden=false;
-    banner.querySelector('[data-consent="accept"]').addEventListener('click',function(){save('granted');banner.hidden=true;loadAnalytics();});
-    banner.querySelector('[data-consent="decline"]').addEventListener('click',function(){save('denied');banner.hidden=true;});
+    if(c) apply(c); else banner.hidden=false;
+    [].forEach.call(banner.querySelectorAll('[data-consent]'),function(b){
+      b.addEventListener('click',function(){
+        var v={all:'all',accept:'granted',decline:'denied'}[b.getAttribute('data-consent')]||'denied';
+        save(v); banner.hidden=true; apply(v);
+      });
+    });
   }
   var reopen=document.getElementById('cookie-settings');
   if(reopen&&banner) reopen.addEventListener('click',function(){banner.hidden=false;banner.querySelector('button').focus();});
@@ -56,10 +104,11 @@
     if(bad){bad.focus(); return;}
     var btn=form.querySelector('button[type="submit"]'); btn.disabled=true; btn.textContent='Sending…';
     var data={}; new FormData(form).forEach(function(v,k){data[k]=v});
+    var at=(window.sokolAttribution&&window.sokolAttribution.get())||{}; ['utm_source','utm_medium','utm_campaign','utm_content','landing_page'].forEach(function(k){ if(at[k]) data[k]=at[k]; });
     fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})
       .then(function(res){
-        if(res.ok){form.reset();started.value=String(Date.now());status.className='form-status ok';status.textContent='Message sent. We reply within one business day.';}
+        if(res.ok){if(typeof window.fbq==='function') window.fbq('track','Lead');form.reset();started.value=String(Date.now());status.className='form-status ok';status.textContent='Message sent. We reply within one business day.';}
         else{status.className='form-status bad';status.textContent=(res.j&&res.j.error)||'Your message was not sent. Try again, or email marinko@sokolsystems.io.';}
       })
       .catch(function(){status.className='form-status bad';status.textContent='Your message was not sent. Check your connection and try again.';})
@@ -386,7 +435,9 @@
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href]'); if(!a) return;
     var h=a.getAttribute('href')||'';
-    if(h.indexOf('buy.stripe.com')>-1) ev('checkout_click');
+    var px=typeof window.fbq==='function'?window.fbq:null;
+    if(h.indexOf('buy.stripe.com')>-1){ ev('checkout_click'); if(px) px('track','InitiateCheckout'); }
+    else if(h.indexOf('calendly.com/')>-1){ ev('book_call_click'); if(px) px('track','Contact'); }
     else if(/^\/pricing(#|$)/.test(h)) ev('pricing_click');
   });
 })();

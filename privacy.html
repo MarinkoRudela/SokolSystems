@@ -46,22 +46,27 @@
 </header>
 <main id="main" class="doc">
 <h1>Privacy Policy</h1>
-<p>Last updated 23 September 2026</p>
+<p>Last updated 22 October 2026</p>
 <h2>What we collect</h2><ul>
 <li>Your name, email, website and message when you use our contact form.</li>
 <li>Your name, email and business details when you subscribe or book a call.</li>
 <li>Billing details, handled by Stripe. We never see or store your full card number.</li>
 <li>Materials you send us for your creative, such as product photos and brand assets.</li>
-<li>Anonymous usage statistics, only if you allow analytics.</li></ul>
-<h2>How we use it</h2><p>To reply to you, provide the service, manage your subscription and send service emails. We do not sell your data or use it for unrelated advertising.</p>
-<h2 id="analytics">Analytics and cookies</h2><p>We use Vercel Web Analytics to count page views and see which pages are useful. It does not use advertising cookies, does not build a profile of you, and does not track you across other websites. It only runs if you choose "Allow analytics" in the banner. We store your choice in your browser so we don't ask again. You can change it anytime with "Cookie settings" at the bottom of every page.</p>
+<li>Which ad or link brought you to our site, taken from the tracking tags in the link you clicked (such as the campaign and ad name). We save this with your message, booking or purchase so we know which ads work.</li>
+<li>Anonymous usage statistics, only if you allow analytics.</li>
+<li>Ad measurement data shared with Meta, only if you choose “Allow all”.</li></ul>
+<h2>How we use it</h2><p>To reply to you, provide the service, manage your subscription and send service emails. If you choose “Allow all”, we also use it to measure our ads on Facebook and Instagram and to show our ads to people who have visited this site. We do not sell your data.</p>
+<h2 id="analytics">Analytics and cookies</h2><p>We use Vercel Web Analytics to count page views and see which pages are useful. It does not use advertising cookies, does not build a profile of you, and does not track you across other websites. It only runs if you choose “Allow all” or “Analytics only” in the banner.</p>
+<p>If you choose “Allow all”, we also load the Meta pixel. It tells Meta (the company behind Facebook and Instagram) which pages you visit here and actions such as clicking to book a call or submitting the contact form. Meta uses this to report how our ads perform, to show our ads to people who visited, and, if you use Meta’s apps, it may link it to your account under <a href="https://www.facebook.com/privacy/policy/" rel="noopener">Meta’s privacy policy</a>. For collecting this data, Meta Platforms Ireland Limited and we are joint controllers. The pixel never loads if you choose “Analytics only” or “Decline”.</p>
+<p>If you allow analytics, we keep the ad tags from the link you arrived on in your browser tab until you close it, so a booking or message on another page can still show which ad brought you. We store your choice in your browser so we don’t ask again. You can change it anytime with “Cookie settings” at the bottom of every page.</p>
 <h2>Who processes your data</h2><ul>
 <li>Vercel — website hosting and analytics</li>
 <li>Higgsfield — hosts some of the images on this website, and generates AI images and video from materials you provide</li>
 <li>Airtable — contact form messages and request tracking</li>
 <li>Stripe — payments and billing</li>
 <li>Google Workspace — email and file delivery</li>
-<li>Calendly — call booking</li></ul>
+<li>Calendly — call booking</li>
+<li>Meta Platforms Ireland — ad measurement, only if you choose “Allow all”</li></ul>
 <p>Some providers are based outside the European Economic Area. Where data is transferred, it is protected by their standard contractual safeguards.</p>
 <h2>How long we keep it</h2><p>Contact messages are kept for up to 24 months. Account and project files are kept while you are subscribed and for up to 12 months after you cancel. Billing records are kept as long as the law requires. You can ask us to delete your data sooner.</p>
 <h2>Your rights</h2><p>You can ask to access, correct, export or delete your personal data, or object to how we use it. In the EU and UK you can also complain to your local data protection authority.</p>
@@ -96,9 +101,10 @@
   </div>
 </footer>
 <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Cookie preferences" hidden>
-  <p>We use privacy-friendly analytics to see which pages are useful. No advertising cookies, no tracking across sites. Is that OK? <a href="/privacy#analytics">Details</a></p>
+  <p>We use privacy-friendly analytics to see which pages are useful.<span class="consent-ads"> With “Allow all”, we also use Meta’s pixel to measure our ads, which shares your visit with Meta.</span> Is that OK? <a href="/privacy#analytics">Details</a></p>
   <div class="row2">
-    <button type="button" class="btn btn-main" data-consent="accept">Allow analytics</button>
+    <button type="button" class="btn btn-main" data-consent="all">Allow all</button>
+    <button type="button" class="btn btn-ghost" data-consent="accept">Analytics only</button>
     <button type="button" class="btn btn-ghost" data-consent="decline">Decline</button>
   </div>
 </div>

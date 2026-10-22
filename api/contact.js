@@ -53,6 +53,13 @@ export default async function handler(req, res) {
   if (website && !/^https?:\/\//i.test(website)) website = 'https://' + website;
   if (website) { try { new URL(website); } catch { website = ''; } }
 
+  // Which ad or link brought them (utm tags from the landing URL, sent by the page).
+  const src = clean(b.utm_source, 80), med = clean(b.utm_medium, 80);
+  const source = src ? (med ? `${src} / ${med}` : src) : '';
+  const campaign = clean(b.utm_campaign, 120);
+  const ad = clean(b.utm_content, 120);
+  const landing = clean(b.landing_page, 200);
+
   const { AIRTABLE_TOKEN, AIRTABLE_BASE_ID, AIRTABLE_TABLE_ID } = process.env;
   if (!AIRTABLE_TOKEN || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_ID) {
     console.error('Contact form: Airtable environment variables are missing.');
@@ -70,7 +77,8 @@ export default async function handler(req, res) {
         typecast: true,
         records: [{ fields: {
           Name: name, Email: email, Website: website || undefined,
-          Message: message, Submitted: new Date().toISOString(), Status: 'New'
+          Message: message, Submitted: new Date().toISOString(), Status: 'New',
+          Source: source || undefined, Campaign: campaign || undefined, Ad: ad || undefined, 'Landing page': landing || undefined
         } }]
       })
     });
