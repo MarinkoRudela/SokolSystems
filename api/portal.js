@@ -223,7 +223,7 @@ export default async function handler(req, res) {
         if (brand.status === 'Archived') return res.status(200).json({ ok: true });
         if (brands.filter(x => x.status !== 'Archived').length <= 1) return res.status(409).json({ error: 'This is your only brand, so it can\'t be archived.' });
         const open = (await clientRequests(client)).filter(r => r.brandId === brand.id && OPEN.includes(r.status));
-        if (open.length) return res.status(409).json({ error: `${brand.name} still has ${open.length === 1 ? 'a request' : open.length + ' requests'} in your queue. Once ${open.length === 1 ? 'it\'s' : 'they\'re'} delivered, you can archive it.` });
+        if (open.length) return res.status(409).json({ error: `${brand.name} still has ${open.length === 1 ? 'a request' : open.length + ' requests'} in your queue. Once ${open.length === 1 ? 'it\'s' : 'they\'re'} finished, you can archive it.` });
         await at(`${BRANDS}/${brand.id}`, { method: 'PATCH', body: JSON.stringify({ typecast: true, fields: { [B.status]: 'Archived' } }) });
       } else {
         if (closed) return res.status(403).json({ error: closedMsg(status) });
