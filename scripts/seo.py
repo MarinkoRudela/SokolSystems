@@ -15,7 +15,7 @@ WEBSITE = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "na
 SERVICE = {
   "@type": "Service", "@id": SITE + "/#service", "name": "Ad creative subscription",
   "serviceType": "Advertising creative production",
-  "description": "Unlimited requests, produced one at a time: new versions of your best-performing ads (hooks, angles, formats and sizes), product shots, photography, UGC-style video, Reels and social posts. Each request delivered within 48 hours, Monday to Friday. No contract.",
+  "description": "Unlimited requests, produced one at a time: new versions of your best-performing ads (hooks, angles, formats and sizes), product shots, photography, UGC-style video, Reels and social posts. Each request delivered within 24 hours, Monday to Friday. No contract.",
   "provider": {"@id": SITE + "/#org"}, "url": SITE + "/pricing",
   "offers": {"@type": "Offer", "price": "2995", "priceCurrency": "USD", "url": SITE + "/pricing",
              "priceSpecification": {"@type": "UnitPriceSpecification", "price": "2995", "priceCurrency": "USD", "unitText": "MONTH", "referenceQuantity": {"@type": "QuantitativeValue", "value": 1, "unitCode": "MON"}}},
@@ -46,11 +46,11 @@ def set_meta(s, title, desc):
 pages = {
   "index.html": dict(
     title="Sokol Systems — Ad Creative Subscription Built on Your Winners",
-    desc="Send us your best ads and posts. We turn them into new hooks, angles and formats, plus product shots and UGC-style video, in 48 hours. No contract.",
+    desc="Send us your best ads and posts. We turn them into new hooks, angles and formats, plus product shots and UGC-style video, in 24 hours. No contract.",
     graph=lambda s: [ORG, WEBSITE, SERVICE, dict({"@type": "WebPage", "@id": SITE + "/#webpage", "url": SITE + "/", "name": "Sokol Systems", "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + "/#service"}}), faq(s)]),
   "pricing.html": dict(
     title="Ad Creative Subscription Pricing — Sokol Systems",
-    desc="$2,995 a month for ads built from your winners, product shots, photography and UGC-style video, in 48 hours. No contract. See how it compares.",
+    desc="$2,995 a month for ads built from your winners, product shots, photography and UGC-style video, in 24 hours. No contract. See how it compares.",
     graph=lambda s: [ORG, SERVICE,
       {"@type": "WebPage", "@id": SITE + "/pricing#webpage", "url": SITE + "/pricing", "name": "Pricing", "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + "/#service"}},
       {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Pricing", "item": SITE + "/pricing"}]},

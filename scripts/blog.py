@@ -184,7 +184,7 @@ def post_page(p, posts):
   </aside>
   <aside class="post-cta">
     <h2>Got an ad that’s carrying your account? <em>That’s where we start.</em></h2>
-    <p>Send us your best-performing ads and posts. We build new hooks, angles and formats on them, plus product shots and UGC-style video, each delivered within 48 hours. No contract.</p>
+    <p>Send us your best-performing ads and posts. We build new hooks, angles and formats on them, plus product shots and UGC-style video, each delivered within 24 hours. No contract.</p>
     <div class="post-cta-row"><a class="btn btn-main" href="/pricing">See pricing</a><a class="post-cta-link" href="/#how">How it works</a></div>
   </aside>
 </article>
@@ -273,7 +273,7 @@ def llms(posts):
         "",
         "Key facts:",
         "- Price: $2,995 per month, one plan. No contract; pause or cancel anytime.",
-        "- Unlimited requests, produced one at a time. Each request is delivered within 48 hours, Monday to Friday (US Eastern Time).",
+        "- Unlimited requests, produced one at a time. Each request is delivered within 24 hours, Monday to Friday (US Eastern Time).",
         "- Unlimited brands on every subscription; requests for all brands share one queue, and setting up a new brand takes one turn in it.",
         "- Unlimited revisions. Clients own everything delivered.",
         "- Agencies can use it white-label: no Sokol branding on delivered files, and Sokol never contacts an agency's clients.",

@@ -24,7 +24,7 @@ INDUSTRIES = [
 {
  "slug": "med-spas", "short": "med spas", "ribbon": "For med spas", "name": "Med spas", "label": "med spas",
  "title": "Ad Creative for Med Spas | Sokol Systems",
- "description": "Ads, Reels, UGC-style video and treatment photos for med spas, built on the ads already booking your consults. 48-hour delivery, no contract.",
+ "description": "Ads, Reels, UGC-style video and treatment photos for med spas, built on the ads already booking your consults. 24-hour delivery, no contract.",
  "h1": "Ad creative for med spas.", "h1em": "Built on what already books.",
  "lede": "Your best ad already knows what your clients want: the treatment, the offer, the look. We turn it into new versions, Reels and photos, so your feed and your ads never run on one tired creative.",
  "pains": [
@@ -47,7 +47,7 @@ INDUSTRIES = [
 {
  "slug": "dentists", "short": "dental practices", "ribbon": "For dental practices", "name": "Dental practices", "label": "dental practices",
  "title": "Ad Creative for Dentists and Dental Practices | Sokol Systems",
- "description": "New-patient ads, clear aligner and implant promos, UGC-style video and clinic photos for dental practices. 48-hour delivery, no contract.",
+ "description": "New-patient ads, clear aligner and implant promos, UGC-style video and clinic photos for dental practices. 24-hour delivery, no contract.",
  "h1": "Ad creative for dental practices.", "h1em": "Fresh ads, same winning offer.",
  "lede": "Most practices have one new-patient ad that works. We keep it working: new versions, new formats and new photos built on that winner, so it doesn’t have to carry your schedule alone.",
  "pains": [
@@ -70,7 +70,7 @@ INDUSTRIES = [
 {
  "slug": "gyms", "short": "gyms and studios", "ribbon": "For gyms & studios", "name": "Gyms & fitness studios", "label": "gyms and fitness studios",
  "title": "Ad Creative for Gyms and Fitness Studios | Sokol Systems",
- "description": "Membership ads, class promos, action shots and Reels for gyms and fitness studios, built on the ads that already sign members up. 48-hour delivery.",
+ "description": "Membership ads, class promos, action shots and Reels for gyms and fitness studios, built on the ads that already sign members up. 24-hour delivery.",
  "h1": "Ad creative for gyms and fitness studios.", "h1em": "Keep the floor full.",
  "lede": "January fills the gym. The rest of the year, your ads have to. We turn your best membership ad into a steady run of new versions, class promos, action shots and Reels.",
  "pains": [
@@ -85,7 +85,7 @@ INDUSTRIES = [
  "rules": "Meta restricts side-by-side before-and-after comparisons for weight loss, so transformation ads need care. We lean on energy, coaching and community instead, which tend to be more distinctive anyway.",
  "faqs": [
   ("Can you make content from our own class footage?", "Yes. Send phone clips from classes and we’ll cut them into Reels, add text and music, and make versions for ads."),
-  ("Can you help with the January rush?", "Yes. Queue your New Year requests early and we’ll deliver them one at a time, each within 48 hours, so the campaign is ready before the rush."),
+  ("Can you help with the January rush?", "Yes. Queue your New Year requests early and we’ll deliver them one at a time, each within 24 hours, so the campaign is ready before the rush."),
   ("Do you make ads for boutique studios too?", "Yes: pilates, yoga, boxing, CrossFit-style boxes and personal training studios, as well as full gyms."),
  ],
  "related": ["supplement-brands", "clothing-brands", "med-spas"],
@@ -93,7 +93,7 @@ INDUSTRIES = [
 {
  "slug": "restaurants", "short": "restaurants", "ribbon": "For restaurants", "name": "Restaurants", "label": "restaurants",
  "title": "Ad Creative for Restaurants | Sokol Systems",
- "description": "Menu ads, food photography, UGC-style video and Reels for restaurants, built on the posts that already fill tables. 48-hour delivery, no contract.",
+ "description": "Menu ads, food photography, UGC-style video and Reels for restaurants, built on the posts that already fill tables. 24-hour delivery, no contract.",
  "h1": "Ad creative for restaurants.", "h1em": "New on the menu, every week.",
  "lede": "Your best-performing post is usually one dish, one deal or one night. We build on it: new versions, food photography, UGC-style video and Reels, so the specials board online changes as often as the real one.",
  "pains": [
@@ -108,7 +108,7 @@ INDUSTRIES = [
  "rules": "",
  "faqs": [
   ("Can you photograph our actual dishes?", "We work from photos you send, even quick phone shots, and turn them into polished food photography and ads. We can also make new styled scenes around your dishes."),
-  ("How fast can you turn around a special?", "Each request is delivered within 48 hours, Monday to Friday. Send a weekend special by Wednesday and it’s ready in time."),
+  ("How fast can you turn around a special?", "Each request is delivered within 24 hours, Monday to Friday. Send a weekend special by Wednesday and it’s ready in time."),
   ("Do you post for us?", "No. We make the content; you post it or schedule it. We don’t manage your social accounts."),
  ],
  "related": ["cafes-and-bars", "home-brands", "salons-and-barbers"],
@@ -116,7 +116,7 @@ INDUSTRIES = [
 {
  "slug": "cafes-and-bars", "short": "cafés and bars", "ribbon": "For cafés & bars", "name": "Cafés & bars", "label": "cafés and bars",
  "title": "Ad Creative for Cafés and Bars | Sokol Systems",
- "description": "Drinks photography, happy-hour and event ads, UGC-style video and Reels for cafés, coffee shops and bars. 48-hour delivery, no contract.",
+ "description": "Drinks photography, happy-hour and event ads, UGC-style video and Reels for cafés, coffee shops and bars. 24-hour delivery, no contract.",
  "h1": "Ad creative for cafés and bars.", "h1em": "Make them come in tonight.",
  "lede": "Cafés and bars sell a feeling: the first coffee, the last round. We take the post or ad that already brings people in and turn it into new drinks shots, event promos, UGC-style clips and Reels.",
  "pains": [
@@ -130,7 +130,7 @@ INDUSTRIES = [
  "method": "",
  "rules": "If you serve alcohol, Meta requires US ads for it to target people 21 and over, and ads can’t show excessive drinking or link drinking to risky activities. We build drinks ads with that in mind.",
  "faqs": [
-  ("Can you make content for weekly events?", "Yes. Recurring events are a good fit for a subscription: queue them up and each one is delivered within 48 hours."),
+  ("Can you make content for weekly events?", "Yes. Recurring events are a good fit for a subscription: queue them up and each one is delivered within 24 hours."),
   ("Can you shoot our actual drinks?", "We work from your photos, even quick phone shots, and turn them into polished drinks photography and ads, or build new styled scenes around them."),
   ("Do you only do ads?", "No. The same subscription covers organic posts, stories, Reels and photos for your feed."),
  ],
@@ -139,7 +139,7 @@ INDUSTRIES = [
 {
  "slug": "salons-and-barbers", "short": "salons and barbers", "ribbon": "For salons & barbers", "name": "Salons & barbers", "label": "salons and barbershops",
  "title": "Ad Creative for Hair Salons and Barbershops | Sokol Systems",
- "description": "Booking ads, hair photography, UGC-style video and Reels for hair salons and barbershops. 48-hour delivery, no contract.",
+ "description": "Booking ads, hair photography, UGC-style video and Reels for hair salons and barbershops. 24-hour delivery, no contract.",
  "h1": "Ad creative for salons and barbershops.", "h1em": "Every chair, booked.",
  "lede": "Your best work walks out the door every day. We help it show up in the feed: new versions of the post that gets bookings, plus hair photography, UGC-style clips and Reels.",
  "pains": [
@@ -154,7 +154,7 @@ INDUSTRIES = [
  "rules": "",
  "faqs": [
   ("Can you use our own client photos?", "Yes, if your clients have agreed to you using them. We can also make new styled scenes so you don’t need client photos at all."),
-  ("Can you promote quiet days?", "Yes. Quiet-day offers, walk-in days and seasonal packages are quick to turn around, each within 48 hours."),
+  ("Can you promote quiet days?", "Yes. Quiet-day offers, walk-in days and seasonal packages are quick to turn around, each within 24 hours."),
   ("Do you work with nail and lash studios too?", "Yes. Any appointment-based beauty business works the same way: send your best post, and we build on it."),
  ],
  "related": ["med-spas", "skincare-brands", "cafes-and-bars"],
@@ -162,7 +162,7 @@ INDUSTRIES = [
 {
  "slug": "skincare-brands", "short": "skincare brands", "ribbon": "For skincare brands", "name": "Skincare & beauty brands", "label": "skincare and beauty brands",
  "title": "Ad Creative for Skincare and Beauty Brands | Sokol Systems",
- "description": "UGC-style video, product shots, static ads and Reels for skincare and beauty brands, built on your best-performing ads. 48-hour delivery.",
+ "description": "UGC-style video, product shots, static ads and Reels for skincare and beauty brands, built on your best-performing ads. 24-hour delivery.",
  "h1": "Ad creative for skincare and beauty brands.", "h1em": "Ten versions of your winner.",
  "lede": "In beauty, one ad can carry a launch, and then wears out fast. We take your winners and multiply them: new hooks, UGC-style video, product shots and every size, so you always have the next one ready.",
  "pains": [
@@ -185,7 +185,7 @@ INDUSTRIES = [
 {
  "slug": "clothing-brands", "short": "clothing brands", "ribbon": "For clothing brands", "name": "Clothing & apparel brands", "label": "clothing and apparel brands",
  "title": "Ad Creative for Clothing and Apparel Brands | Sokol Systems",
- "description": "Lookbooks, product shots, UGC-style try-ons, static ads and Reels for clothing and apparel brands, built on your best ads. 48-hour delivery.",
+ "description": "Lookbooks, product shots, UGC-style try-ons, static ads and Reels for clothing and apparel brands, built on your best ads. 24-hour delivery.",
  "h1": "Ad creative for clothing brands.", "h1em": "Every drop, every size.",
  "lede": "Fashion moves in drops and seasons, and each one needs a full set of content. We take the ad or post that sold the last drop and build the next one on it: lookbooks, product shots, try-on style videos and Reels.",
  "pains": [
@@ -201,14 +201,14 @@ INDUSTRIES = [
  "faqs": [
   ("Can you show our real garments?", "Yes. Send product photos and we build lookbook scenes, on-model images and ads around your actual pieces."),
   ("Can you make try-on style videos?", "Yes. UGC-style try-ons and unboxings are among our most requested formats."),
-  ("Do you handle sale and drop announcements?", "Yes. Drops, restocks and sales are quick turnarounds, each delivered within 48 hours."),
+  ("Do you handle sale and drop announcements?", "Yes. Drops, restocks and sales are quick turnarounds, each delivered within 24 hours."),
  ],
  "related": ["skincare-brands", "home-brands", "gyms"],
 },
 {
  "slug": "supplement-brands", "short": "supplement brands", "ribbon": "For supplement brands", "name": "Supplement brands", "label": "supplement brands",
  "title": "Ad Creative for Supplement Brands | Sokol Systems",
- "description": "UGC-style video, product shots, carousels and static ads for supplement and wellness brands, built on your best ads. 48-hour delivery, no contract.",
+ "description": "UGC-style video, product shots, carousels and static ads for supplement and wellness brands, built on your best ads. 24-hour delivery, no contract.",
  "h1": "Ad creative for supplement brands.", "h1em": "Daily habit, fresh ads.",
  "lede": "Supplements are bought on trust and routine. We build on the ad that already earns both: new hooks, routine-style UGC videos, product shots and carousels that explain what’s inside.",
  "pains": [
@@ -231,7 +231,7 @@ INDUSTRIES = [
 {
  "slug": "home-brands", "short": "home brands", "ribbon": "For home brands", "name": "Home & kitchen brands", "label": "home and kitchen brands",
  "title": "Ad Creative for Home and Kitchen Brands | Sokol Systems",
- "description": "Lifestyle photography, product shots, sale ads, UGC-style video and Reels for home, kitchen and furniture brands. 48-hour delivery, no contract.",
+ "description": "Lifestyle photography, product shots, sale ads, UGC-style video and Reels for home, kitchen and furniture brands. 24-hour delivery, no contract.",
  "h1": "Ad creative for home and kitchen brands.", "h1em": "Show it in a real home.",
  "lede": "People buy home products when they can picture them in their own space. We take your best ad and build new lifestyle scenes, product shots, sale promos and UGC-style videos around it.",
  "pains": [
@@ -246,7 +246,7 @@ INDUSTRIES = [
  "rules": "",
  "faqs": [
   ("Can you put our real products into new scenes?", "Yes. Send product photos and we build new kitchens, living rooms and bedrooms around your actual products."),
-  ("Can you get us ready for Black Friday?", "Yes. Queue your sale assets early and we deliver them one at a time, each within 48 hours."),
+  ("Can you get us ready for Black Friday?", "Yes. Queue your sale assets early and we deliver them one at a time, each within 24 hours."),
   ("Do you make product-page images too?", "Yes. Product shots, detail close-ups and lifestyle images work for your store as well as your ads."),
  ],
  "related": ["clothing-brands", "real-estate", "restaurants"],
@@ -254,7 +254,7 @@ INDUSTRIES = [
 {
  "slug": "real-estate", "short": "real estate agents", "ribbon": "For real estate agents", "name": "Real estate agents", "label": "real estate agents and brokerages",
  "title": "Ad Creative for Real Estate Agents | Sokol Systems",
- "description": "Just-listed ads, open house promos, listing Reels and seller ads for real estate agents and brokerages. 48-hour delivery, no contract.",
+ "description": "Just-listed ads, open house promos, listing Reels and seller ads for real estate agents and brokerages. 24-hour delivery, no contract.",
  "h1": "Ad creative for real estate agents.", "h1em": "Every listing, its own campaign.",
  "lede": "Every listing is a new product with a short shelf life. We take your best-performing listing or seller ad and turn each new property into a full set: just-listed ads, open house promos, story polls and Reels.",
  "pains": [
@@ -268,7 +268,7 @@ INDUSTRIES = [
  "method": METHOD_SEARCH.format(kw="‘realtor’", who="agents and brokerages") + " A small sample, so treat it as a signal.",
  "rules": "In the US, ads for housing, including listings and open houses, must run under Meta’s Housing special ad category, which limits targeting by age, gender and ZIP code. Fair housing rules apply to the creative too, so we keep it about the home and the area, never about who should live there.",
  "faqs": [
-  ("Can you make content for every new listing?", "Yes. Send the listing photos and details, and we turn them into a set of ads, stories and a Reel, each request delivered within 48 hours."),
+  ("Can you make content for every new listing?", "Yes. Send the listing photos and details, and we turn them into a set of ads, stories and a Reel, each request delivered within 24 hours."),
   ("Do you use the real property photos?", "Yes. Listing content is built from your real photos, so buyers see the actual home. We don’t alter the property itself."),
   ("Can you help us win more listings?", "Yes. Seller-focused ads like home valuations and market updates are part of the same subscription."),
  ],
@@ -277,7 +277,7 @@ INDUSTRIES = [
 {
  "slug": "car-dealerships", "short": "car dealerships", "ribbon": "For car dealerships", "name": "Car dealerships", "label": "car dealerships",
  "title": "Ad Creative for Car Dealerships | Sokol Systems",
- "description": "Inventory ads, model spotlights, offer promos, automotive photography and Reels for car dealerships. 48-hour delivery, no contract.",
+ "description": "Inventory ads, model spotlights, offer promos, automotive photography and Reels for car dealerships. 24-hour delivery, no contract.",
  "h1": "Ad creative for car dealerships.", "h1em": "Move the lot, not just the feed.",
  "lede": "Your inventory changes every week; your ads often don’t. We take the ad that brings people in for a test drive and build new versions for every model, offer and month-end push.",
  "pains": [
@@ -292,7 +292,7 @@ INDUSTRIES = [
  "rules": "In the US, ads for car loans and financing offers fall under Meta’s Financial products and services category, which limits targeting. Model, service and test-drive ads usually don’t, so it pays to have strong creative for both.",
  "faqs": [
   ("Can you work with our real inventory photos?", "Yes. Send lot or studio photos and we build ads, model spotlights and Reels around the actual vehicles."),
-  ("Can you make month-end offer ads?", "Yes. Offer promos are quick turnarounds, each delivered within 48 hours. You confirm every price and term before it runs."),
+  ("Can you make month-end offer ads?", "Yes. Offer promos are quick turnarounds, each delivered within 24 hours. You confirm every price and term before it runs."),
   ("Do you replace our catalog ads?", "No. Catalog ads keep your inventory online; we make the brand and offer creative that runs alongside them."),
  ],
  "related": ["real-estate", "home-brands", "gyms"],
@@ -304,7 +304,7 @@ INDUSTRIES = [
  "name": "Drink & beverage brands",
  "label": "drink and beverage brands",
  "title": "Ad Creative for Drink and Beverage Brands | Sokol Systems",
- "description": "Splash and product shots, lifestyle images, UGC-style video and Reels for drink and beverage brands, built on your best ads. 48-hour delivery.",
+ "description": "Splash and product shots, lifestyle images, UGC-style video and Reels for drink and beverage brands, built on your best ads. 24-hour delivery.",
  "h1": "Ad creative for drink brands.",
  "h1em": "Every can, every moment.",
  "lede": "Drinks sell on a feeling: ice cold, refreshing, the moment it gets opened. We take the ad or post that’s already selling and build on it: splash shots, lifestyle scenes, UGC-style video and Reels for every flavor and season.",
@@ -321,7 +321,7 @@ INDUSTRIES = [
  "faqs": [
   ("Can you show our real cans and bottles?", "Yes. Send product photos and we build splash shots, lifestyle scenes and ads around your actual packaging, with the label kept accurate."),
   ("Do you work with alcohol brands?", "Yes, within the platforms’ rules. The creative shows adults only, and we never suggest that drinking improves health, performance or success."),
-  ("Can you help launch a new flavor?", "Yes. Send the packaging and flavor details. Product shots, the launch ad and Reels can each be a request in your queue, each delivered within 48 hours."),
+  ("Can you help launch a new flavor?", "Yes. Send the packaging and flavor details. Product shots, the launch ad and Reels can each be a request in your queue, each delivered within 24 hours."),
  ],
  "related": ["supplement-brands", "cafes-and-bars", "restaurants"],
 },
@@ -332,7 +332,7 @@ INDUSTRIES = [
  "name": "Jewelry & accessories",
  "label": "jewelry and accessories brands",
  "title": "Ad Creative for Jewelry & Accessory Brands | Sokol Systems",
- "description": "Macro product shots, on-model images, UGC-style video and Reels for jewelry, watch and accessory brands, built on your best ads. 48-hour delivery.",
+ "description": "Macro product shots, on-model images, UGC-style video and Reels for jewelry, watch and accessory brands, built on your best ads. 24-hour delivery.",
  "h1": "Ad creative for jewelry brands.",
  "h1em": "Detail that sells.",
  "lede": "Jewelry and accessories sell on detail: the sparkle, the finish, how a piece looks when it’s worn. We take your best-selling ad and build on it with macro product shots, on-model images, UGC-style video and Reels.",
@@ -360,7 +360,7 @@ INDUSTRIES = [
  "name": "Sports & outdoor brands",
  "label": "sports and outdoor brands",
  "title": "Ad Creative for Sports and Outdoor Brands | Sokol Systems",
- "description": "Action shots, adventure imagery, UGC-style video and Reels for sports and outdoor brands, built on your best ads. 48-hour delivery.",
+ "description": "Action shots, adventure imagery, UGC-style video and Reels for sports and outdoor brands, built on your best ads. 24-hour delivery.",
  "h1": "Ad creative for outdoor brands.",
  "h1em": "The adventure, without the expedition.",
  "lede": "Sports and outdoor gear sells on the moment it’s made for: the trail, the summit, the session. We take your best-performing ad and build on it with action shots, adventure scenes, UGC-style video and Reels, without sending a crew up a mountain.",

@@ -4,7 +4,7 @@
 
 Key facts:
 - Price: $2,995 per month, one plan. No contract; pause or cancel anytime.
-- Unlimited requests, produced one at a time. Each request is delivered within 48 hours, Monday to Friday (US Eastern Time).
+- Unlimited requests, produced one at a time. Each request is delivered within 24 hours, Monday to Friday (US Eastern Time).
 - Unlimited brands on every subscription; requests for all brands share one queue, and setting up a new brand takes one turn in it.
 - Unlimited revisions. Clients own everything delivered.
 - Agencies can use it white-label: no Sokol branding on delivered files, and Sokol never contacts an agency's clients.
@@ -22,21 +22,21 @@ Key facts:
 - [Blog](https://sokolsystems.io/blog): research and notes on ad creative
 
 ## Industry pages
-- [Ad creative for med spas](https://sokolsystems.io/for/med-spas): Ads, Reels, UGC-style video and treatment photos for med spas, built on the ads already booking your consults. 48-hour delivery, no contract.
-- [Ad creative for dental practices](https://sokolsystems.io/for/dentists): New-patient ads, clear aligner and implant promos, UGC-style video and clinic photos for dental practices. 48-hour delivery, no contract.
-- [Ad creative for gyms and fitness studios](https://sokolsystems.io/for/gyms): Membership ads, class promos, action shots and Reels for gyms and fitness studios, built on the ads that already sign members up. 48-hour delivery.
-- [Ad creative for restaurants](https://sokolsystems.io/for/restaurants): Menu ads, food photography, UGC-style video and Reels for restaurants, built on the posts that already fill tables. 48-hour delivery, no contract.
-- [Ad creative for cafés and bars](https://sokolsystems.io/for/cafes-and-bars): Drinks photography, happy-hour and event ads, UGC-style video and Reels for cafés, coffee shops and bars. 48-hour delivery, no contract.
-- [Ad creative for salons and barbershops](https://sokolsystems.io/for/salons-and-barbers): Booking ads, hair photography, UGC-style video and Reels for hair salons and barbershops. 48-hour delivery, no contract.
-- [Ad creative for skincare and beauty brands](https://sokolsystems.io/for/skincare-brands): UGC-style video, product shots, static ads and Reels for skincare and beauty brands, built on your best-performing ads. 48-hour delivery.
-- [Ad creative for clothing and apparel brands](https://sokolsystems.io/for/clothing-brands): Lookbooks, product shots, UGC-style try-ons, static ads and Reels for clothing and apparel brands, built on your best ads. 48-hour delivery.
-- [Ad creative for supplement brands](https://sokolsystems.io/for/supplement-brands): UGC-style video, product shots, carousels and static ads for supplement and wellness brands, built on your best ads. 48-hour delivery, no contract.
-- [Ad creative for home and kitchen brands](https://sokolsystems.io/for/home-brands): Lifestyle photography, product shots, sale ads, UGC-style video and Reels for home, kitchen and furniture brands. 48-hour delivery, no contract.
-- [Ad creative for real estate agents and brokerages](https://sokolsystems.io/for/real-estate): Just-listed ads, open house promos, listing Reels and seller ads for real estate agents and brokerages. 48-hour delivery, no contract.
-- [Ad creative for car dealerships](https://sokolsystems.io/for/car-dealerships): Inventory ads, model spotlights, offer promos, automotive photography and Reels for car dealerships. 48-hour delivery, no contract.
-- [Ad creative for drink and beverage brands](https://sokolsystems.io/for/beverage-brands): Splash and product shots, lifestyle images, UGC-style video and Reels for drink and beverage brands, built on your best ads. 48-hour delivery.
-- [Ad creative for jewelry and accessories brands](https://sokolsystems.io/for/jewelry-brands): Macro product shots, on-model images, UGC-style video and Reels for jewelry, watch and accessory brands, built on your best ads. 48-hour delivery.
-- [Ad creative for sports and outdoor brands](https://sokolsystems.io/for/outdoor-brands): Action shots, adventure imagery, UGC-style video and Reels for sports and outdoor brands, built on your best ads. 48-hour delivery.
+- [Ad creative for med spas](https://sokolsystems.io/for/med-spas): Ads, Reels, UGC-style video and treatment photos for med spas, built on the ads already booking your consults. 24-hour delivery, no contract.
+- [Ad creative for dental practices](https://sokolsystems.io/for/dentists): New-patient ads, clear aligner and implant promos, UGC-style video and clinic photos for dental practices. 24-hour delivery, no contract.
+- [Ad creative for gyms and fitness studios](https://sokolsystems.io/for/gyms): Membership ads, class promos, action shots and Reels for gyms and fitness studios, built on the ads that already sign members up. 24-hour delivery.
+- [Ad creative for restaurants](https://sokolsystems.io/for/restaurants): Menu ads, food photography, UGC-style video and Reels for restaurants, built on the posts that already fill tables. 24-hour delivery, no contract.
+- [Ad creative for cafés and bars](https://sokolsystems.io/for/cafes-and-bars): Drinks photography, happy-hour and event ads, UGC-style video and Reels for cafés, coffee shops and bars. 24-hour delivery, no contract.
+- [Ad creative for salons and barbershops](https://sokolsystems.io/for/salons-and-barbers): Booking ads, hair photography, UGC-style video and Reels for hair salons and barbershops. 24-hour delivery, no contract.
+- [Ad creative for skincare and beauty brands](https://sokolsystems.io/for/skincare-brands): UGC-style video, product shots, static ads and Reels for skincare and beauty brands, built on your best-performing ads. 24-hour delivery.
+- [Ad creative for clothing and apparel brands](https://sokolsystems.io/for/clothing-brands): Lookbooks, product shots, UGC-style try-ons, static ads and Reels for clothing and apparel brands, built on your best ads. 24-hour delivery.
+- [Ad creative for supplement brands](https://sokolsystems.io/for/supplement-brands): UGC-style video, product shots, carousels and static ads for supplement and wellness brands, built on your best ads. 24-hour delivery, no contract.
+- [Ad creative for home and kitchen brands](https://sokolsystems.io/for/home-brands): Lifestyle photography, product shots, sale ads, UGC-style video and Reels for home, kitchen and furniture brands. 24-hour delivery, no contract.
+- [Ad creative for real estate agents and brokerages](https://sokolsystems.io/for/real-estate): Just-listed ads, open house promos, listing Reels and seller ads for real estate agents and brokerages. 24-hour delivery, no contract.
+- [Ad creative for car dealerships](https://sokolsystems.io/for/car-dealerships): Inventory ads, model spotlights, offer promos, automotive photography and Reels for car dealerships. 24-hour delivery, no contract.
+- [Ad creative for drink and beverage brands](https://sokolsystems.io/for/beverage-brands): Splash and product shots, lifestyle images, UGC-style video and Reels for drink and beverage brands, built on your best ads. 24-hour delivery.
+- [Ad creative for jewelry and accessories brands](https://sokolsystems.io/for/jewelry-brands): Macro product shots, on-model images, UGC-style video and Reels for jewelry, watch and accessory brands, built on your best ads. 24-hour delivery.
+- [Ad creative for sports and outdoor brands](https://sokolsystems.io/for/outdoor-brands): Action shots, adventure imagery, UGC-style video and Reels for sports and outdoor brands, built on your best ads. 24-hour delivery.
 
 ## Blog posts
 - [Only half the independent car dealers we checked posted on Instagram in the past month](https://sokolsystems.io/blog/car-dealer-instagram-study): We checked the Instagram of 85 independent classic, exotic and luxury car dealers. Only 42 had posted in the past month; 14 had been quiet for over a year.

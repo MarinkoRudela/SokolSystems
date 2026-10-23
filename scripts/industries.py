@@ -127,7 +127,7 @@ def page(i):
     </div>
     <ol class="ind-steps">
       <li><h3>Send your winner</h3><p>Your best-performing ad or post, plus anything we should know: the offer, the season, what’s changed.</p></li>
-      <li><h3>We build on it</h3><p>New hooks, angles, formats and sizes, plus photos and video. Each request is delivered within 48 hours, Monday to Friday.</p></li>
+      <li><h3>We build on it</h3><p>New hooks, angles, formats and sizes, plus photos and video. Each request is delivered within 24 hours, Monday to Friday.</p></li>
       <li><h3>Run it, then repeat</h3><p>You run the new versions. The one that wins becomes the next thing we build on. No ad account access needed.</p></li>
     </ol>
   </div>
@@ -145,7 +145,7 @@ def page(i):
     <div class="ind-plan-box">
       <div>
         <h2 id="plan-h">One plan. <em>Everything included.</em></h2>
-        <p>$2,995 a month for unlimited requests, produced one at a time, each delivered within 48 hours. No contract; pause or cancel anytime.</p>
+        <p>$2,995 a month for unlimited requests, produced one at a time, each delivered within 24 hours. No contract; pause or cancel anytime.</p>
       </div>
       <div class="ind-plan-cta"><a class="btn btn-main" href="{STRIPE}">Start your subscription</a><a class="ind-link" href="/pricing">See pricing and how we compare</a></div>
     </div>
@@ -162,7 +162,7 @@ def page(i):
 """ + blog.FOOT)
 
 def hub():
-    desc = "Ad creative for marketing agencies (white-label), med spas, dentists, gyms, restaurants, salons, real estate, car dealers and product brands. 48-hour delivery."
+    desc = "Ad creative for marketing agencies (white-label), med spas, dentists, gyms, restaurants, salons, real estate, car dealers and product brands. 24-hour delivery."
     graph = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": SITE + "/industries#webpage", "url": SITE + "/industries", "name": "Industries we make ad creative for",
          "isPartOf": {"@id": SITE + "/#website"},
@@ -184,7 +184,7 @@ def hub():
   <div class="wrap">
     <span class="ribbon">Industries</span>
     <h1 class="pr-h1">Ad creative for <em>your kind of business.</em></h1>
-    <p class="lede mt">Same plan, same 48-hour delivery, built around how your industry advertises. Pick yours to see what we make, what we found in real ads, and the rules worth knowing.</p>
+    <p class="lede mt">Same plan, same 24-hour delivery, built around how your industry advertises. Pick yours to see what we make, what we found in real ads, and the rules worth knowing.</p>
   </div>
 </section>
 <section class="hub" aria-label="Industries">

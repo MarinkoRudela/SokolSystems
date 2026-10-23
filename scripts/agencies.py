@@ -15,7 +15,7 @@ from blog import SITE, STRIPE, esc
 PATH = "/for/agencies"
 TITLE = "White-Label Ad Creative for Agencies | Sokol Systems"
 DESC = ("White-label ad creative for agencies: new versions of your clients' winning ads, photos and video, "
-        "48-hour delivery, unlimited brands, $2,995 a month.")
+        "24-hour delivery, unlimited brands, $2,995 a month.")
 
 SAMPLES = ["ugc-serum-selfie", "burger-ad", "coffee-meme-post", "car-suv-ad"]
 
@@ -46,7 +46,7 @@ WHITE = [
 STEPS = [
     ("Add a brand", "Enter the client’s name and website in your portal. Setting it up takes one turn in your queue."),
     ("Send a winner", "Their best-performing ad or post, and what you want: new hooks, new formats or fresh visuals."),
-    ("Get versions in 48 hours", "Every size, each file named for the one thing it changes, with a short test guide."),
+    ("Get versions in 24 hours", "Every size, each file named for the one thing it changes, with a short test guide."),
     ("Run, then repeat", "Your client runs the new versions. The one that wins becomes the next thing we build on."),
 ]
 
@@ -56,7 +56,9 @@ FAQ = [
     ("How many brands can we add?",
      "As many as you like. Every subscription includes unlimited brands, each with its own brand profile and Drive folder. Archive a brand when you stop working with that client, and restore it if they come back."),
     ("How many requests do we get?",
-     "Unlimited requests, produced one at a time across all your brands. Each is delivered within 48 hours of when we start it, Monday to Friday, so a full queue is around 10 requests a month. Setting up a new brand takes one of those turns while we research it and build its profile."),
+     "Unlimited requests, produced one at a time across all your brands. Each is delivered within 24 hours of when we start it, Monday to Friday, so a full queue is around 20 requests a month. Setting up a new brand takes one of those turns while we research it and build its profile."),
+    ("What counts as one request?",
+     "One piece of work: one ad concept in every size (with up to five hook or headline versions), one video up to 60 seconds (with up to five hook versions), one carousel, or one set of up to five photos. A bigger ask is split into several requests in your queue, and we tell you before we start."),
     ("What do you need for each brand?",
      "Its website, and ideally its logo files, a few product photos and its best-performing ads. You confirm you have your client’s permission to share their materials with us, and the consent of anyone whose face or voice you want us to use."),
     ("Who owns the work?",
@@ -74,7 +76,7 @@ def ld():
     graph = [
         {"@type": "Service", "@id": SITE + PATH + "#service", "name": "White-label ad creative for marketing agencies",
          "serviceType": "Advertising creative production",
-         "description": "White-label creative subscription for agencies: new versions of clients' best-performing ads, product photography, UGC-style video and Reels, with unlimited brands and 48-hour delivery per request.",
+         "description": "White-label creative subscription for agencies: new versions of clients' best-performing ads, product photography, UGC-style video and Reels, with unlimited brands and 24-hour delivery per request.",
          "provider": {"@id": SITE + "/#org"}, "url": SITE + PATH, "areaServed": "Worldwide",
          "audience": {"@type": "BusinessAudience", "name": "Marketing agencies"},
          "offers": {"@type": "Offer", "price": "2995", "priceCurrency": "USD", "url": SITE + "/pricing",
@@ -104,7 +106,7 @@ def page():
     <nav class="crumbs crumbs-c" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>For agencies</span></nav>
     <span class="ribbon">For marketing agencies</span>
     <h1 class="pr-h1">More creative for every client. <em>Under your name.</em></h1>
-    <p class="lede mt">Send us your clients’ winning ads. We turn them into new hooks, formats and visuals, delivered within 48 hours and ready to present as your own. Unlimited brands on one plan.</p>
+    <p class="lede mt">Send us your clients’ winning ads. We turn them into new hooks, formats and visuals, delivered within 24 hours and ready to present as your own. Unlimited brands on one plan.</p>
     <div class="ind-cta"><a class="btn btn-main" href="#sample">Get a free sample</a><a class="ind-link" href="#how">How it works</a></div>
   </div>
 </section>
@@ -142,7 +144,7 @@ def page():
   <div class="wrap">
     <div class="ind-rules-box">
       <h2 id="queue-h">How the queue works</h2>
-      <p>Requests are produced one at a time across all your brands, and each is delivered within 48 hours of when we start it, Monday to Friday. Keep your queue full and that’s around 10 requests a month. Adding a new brand uses one of those turns while we research it and build its profile. Changes to delivered work always go first.</p>
+      <p>Requests are produced one at a time across all your brands, and each is delivered within 24 hours of when we start it, Monday to Friday. Keep your queue full and that’s around 20 requests a month. Adding a new brand uses one of those turns while we research it and build its profile. Changes to delivered work always go first.</p>
     </div>
   </div>
 </section>
@@ -183,7 +185,7 @@ def page():
     <div class="ind-plan-box">
       <div>
         <h2 id="plan-h">One plan. <em>Unlimited brands.</em></h2>
-        <p>$2,995 a month for unlimited requests across all your clients, produced one at a time, each delivered within 48 hours. No contract; pause or cancel anytime.</p>
+        <p>$2,995 a month for unlimited requests across all your clients, produced one at a time, each delivered within 24 hours. No contract; pause or cancel anytime.</p>
       </div>
       <div class="ind-plan-cta"><a class="btn btn-main" href="{STRIPE}">Start your subscription</a><a class="ind-link" href="/pricing">See pricing and how we compare</a></div>
     </div>
