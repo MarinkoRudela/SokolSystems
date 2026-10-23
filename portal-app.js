@@ -5,7 +5,7 @@
   function el(tag,cls,text){var e=document.createElement(tag); if(cls)e.className=cls; if(text!=null)e.textContent=text; return e;}
   function fail(msg){state.textContent=msg; state.className='pstate bad'; app.hidden=true;}
   function fmt(d){try{return new Date(d).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})}catch(e){return ''}}
-  var pillCls={'New':'p-new','In progress':'p-prog','Needs info':'p-coral','Delivered':'p-done','Revision requested':'p-coral','Approved':'p-done','Info received':'p-prog','Setting up':'p-prog','Active':'p-done'};
+  var pillCls={'Done':'p-done','New':'p-new','In progress':'p-prog','Needs info':'p-coral','Delivered':'p-done','Revision requested':'p-coral','Approved':'p-done','Info received':'p-prog','Setting up':'p-prog','Active':'p-done'};
   function api(method,body){
     var url='/api/portal'+(method==='GET'?'?c='+encodeURIComponent(code):'');
     return fetch(url,{method:method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(Object.assign({c:code},body)):undefined})
