@@ -5,7 +5,9 @@
 Key facts:
 - Price: $2,995 per month, one plan. No contract; pause or cancel anytime.
 - Unlimited requests, produced one at a time. Each request is delivered within 48 hours, Monday to Friday (US Eastern Time).
+- Unlimited brands on every subscription; requests for all brands share one queue, and setting up a new brand takes one turn in it.
 - Unlimited revisions. Clients own everything delivered.
+- Agencies can use it white-label: no Sokol branding on delivered files, and Sokol never contacts an agency's clients.
 - Sokol does not need access to a client's ad account and does not guarantee ad performance.
 - A human creative director owns strategy and quality; AI production tools handle the slow parts of production.
 - Also offered: building and installing a custom AI creative system inside a client's own business (scoped and quoted on an implementation call; no public price).
@@ -15,6 +17,7 @@ Key facts:
 - [Home](https://sokolsystems.io/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs
 - [Pricing](https://sokolsystems.io/pricing): the plan, an example month, and a sourced comparison with freelancers, design subscriptions, an in-house team and agencies
 - [Implementation](https://sokolsystems.io/implementation): building a custom AI creative system inside a client's own business (brand setup, consistent characters, production workflows, approvals, training); scoped and quoted on a call
+- [For agencies](https://sokolsystems.io/for/agencies): white-label ad creative for marketing agencies, with unlimited brands and a free sample on one client ad
 - [Industries](https://sokolsystems.io/industries): the industries Sokol makes ad creative for, with a page for each
 - [Blog](https://sokolsystems.io/blog): research and notes on ad creative
 

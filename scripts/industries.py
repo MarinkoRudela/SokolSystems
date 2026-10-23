@@ -186,7 +186,7 @@ def hub():
 <section class="hub" aria-label="Industries">
   <div class="wrap">
     <ul class="hub-grid">{cards}</ul>
-    <p class="hub-note">Don’t see yours? We work with any business that runs ads or posts on social. <a href="/pricing">See how the plan works</a>.</p>
+    <p class="hub-note">Don’t see yours? We work with any business that runs ads or posts on social. <a href="/pricing">See how the plan works</a>. Run an agency? <a href="/for/agencies">See white-label creative for agencies</a>.</p>
   </div>
 </section>
 </main>

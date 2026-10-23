@@ -44,6 +44,8 @@ export default async function handler(req, res) {
   const name = clean(b.name, 80);
   const email = clean(b.email, 160).toLowerCase();
   let website = clean(b.website, 200);
+  // Which form: the agency page's free-sample form tags its messages so they stand out in Airtable.
+  const topic = b.topic === 'agency-sample' ? '[Free sample request: agency] ' : '';
   const message = clean(b.message, 2000);
 
   if (name.length < 2) return res.status(400).json({ error: 'Enter your name.' });
@@ -77,7 +79,7 @@ export default async function handler(req, res) {
         typecast: true,
         records: [{ fields: {
           Name: name, Email: email, Website: website || undefined,
-          Message: message, Submitted: new Date().toISOString(), Status: 'New',
+          Message: topic + message, Submitted: new Date().toISOString(), Status: 'New',
           Source: source || undefined, Campaign: campaign || undefined, Ad: ad || undefined, 'Landing page': landing || undefined
         } }]
       })
