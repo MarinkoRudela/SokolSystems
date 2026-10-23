@@ -162,17 +162,21 @@ def page(i):
 """ + blog.FOOT)
 
 def hub():
-    desc = "Ad creative for med spas, dental practices, gyms, restaurants, salons, real estate, car dealerships and product brands. One plan, 48-hour delivery."
+    desc = "Ad creative for marketing agencies (white-label), med spas, dentists, gyms, restaurants, salons, real estate, car dealers and product brands. 48-hour delivery."
     graph = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": SITE + "/industries#webpage", "url": SITE + "/industries", "name": "Industries we make ad creative for",
          "isPartOf": {"@id": SITE + "/#website"},
-         "hasPart": [{"@type": "WebPage", "name": "Ad creative for " + i["label"], "url": SITE + "/for/" + i["slug"]} for i in INDUSTRIES]},
+         "hasPart": [{"@type": "WebPage", "name": "White-label ad creative for marketing agencies", "url": SITE + "/for/agencies"}]
+                    + [{"@type": "WebPage", "name": "Ad creative for " + i["label"], "url": SITE + "/for/" + i["slug"]} for i in INDUSTRIES]},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
             {"@type": "ListItem", "position": 2, "name": "Industries", "item": SITE + "/industries"}]}]}
-    cards = "".join(
+    # Agencies get their own card, first in the grid (their page is built by scripts/agencies.py).
+    agency = ('<li class="hub-card hub-agency"><a href="/for/agencies"><img src="/media/work/billboard-sparkling-water-sm.webp" width="440" height="550" alt="" fetchpriority="high" decoding="async">'
+              '<span class="hub-tag">White-label</span><span class="hub-txt"><b>Marketing agencies</b><span>Under your name.</span></span></a></li>')
+    cards = agency + "".join(
         f'<li class="hub-card"><a href="/for/{i["slug"]}"><img src="/media/work/{i["samples"][0]}-sm.webp" width="440" height="550" alt="" '
-        + ('fetchpriority="high"' if n == 0 else 'loading="lazy"' if n >= 4 else '') + ' decoding="async">'
+        + ('loading="lazy"' if n >= 3 else '') + ' decoding="async">'
         f'<span class="hub-txt"><b>{esc(i["name"])}</b><span>{esc(i["h1em"])}</span></span></a></li>' for n, i in enumerate(INDUSTRIES))
     return (blog.head("Ad Creative by Industry | Sokol Systems", desc, "/industries", extra=ld(graph))
         + '</head>\n<body class="page ind-page">\n' + NAV_HUB + f"""<main id="main">
@@ -186,7 +190,7 @@ def hub():
 <section class="hub" aria-label="Industries">
   <div class="wrap">
     <ul class="hub-grid">{cards}</ul>
-    <p class="hub-note">Don’t see yours? We work with any business that runs ads or posts on social. <a href="/pricing">See how the plan works</a>. Run an agency? <a href="/for/agencies">See white-label creative for agencies</a>.</p>
+    <p class="hub-note">Don’t see yours? We work with any business that runs ads or posts on social. <a href="/pricing">See how the plan works</a>.</p>
   </div>
 </section>
 </main>
