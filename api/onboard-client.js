@@ -1,7 +1,9 @@
 // Stripe webhook: finishes onboarding a new $2,995 subscriber automatically.
 // 1. Verifies the request really came from Stripe (signature check on the raw body).
 // 2. Finds the client record the Airtable onboarding automation created.
-// 3. Creates their Google Drive folder (+ Brand Assets, Deliveries) and shares it with them.
+// 3. Creates their Google Drive folder, shares it with them, and sets up their first brand inside it
+//    ([Brand]/Brand Assets + Deliveries) with a matching record in the Brands table. More brands are
+//    added from the portal; every subscription includes unlimited brands.
 // 4. Writes the folder link to their record; sets Status = Active if their request form link exists,
 //    which triggers the "You're all set" email automation in Airtable.
 // Any non-2xx response makes Stripe retry later, so a slow step never loses a client.
@@ -10,10 +12,12 @@
 // GOOGLE_OAUTH_REFRESH_TOKEN, AIRTABLE_TOKEN (needs data.records:read + write), AIRTABLE_BASE_ID.
 // Optional: ONBOARDING_GUIDE_URL, DRIVE_PARENT_FOLDER_ID, AIRTABLE_CLIENTS_TABLE_ID.
 import crypto from 'node:crypto';
+import { googleToken, driveFolder, driveShare, brandFolders, folderName } from './_lib/drive.js';
 
 const PRICE_CENTS = 299500;
 const DEFAULT_PARENT = '1zfBgXHf1FmKzOLpM1HGNorfRLDTHAH07';   // "Sokol Systems — Clients"
 const DEFAULT_CLIENTS = 'tbloJmuK4GVVz3ZrU';
+const BRANDS = 'tbl3s2meIuOoKE2Uj';
 
 function readRaw(req) {
   return new Promise((resolve, reject) => {
@@ -35,37 +39,6 @@ export function verifyStripe(raw, header, secret, toleranceSec = 300, now = Date
 }
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-async function googleToken(env) {
-  const r = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST', signal: AbortSignal.timeout(5000),
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ client_id: env.GOOGLE_OAUTH_CLIENT_ID, client_secret: env.GOOGLE_OAUTH_CLIENT_SECRET, refresh_token: env.GOOGLE_OAUTH_REFRESH_TOKEN, grant_type: 'refresh_token' })
-  });
-  const j = await r.json();
-  if (!r.ok) throw new Error('Google token refresh failed: ' + (j.error_description || j.error));
-  return j.access_token;
-}
-
-async function driveFolder(token, name, parent) {
-  const r = await fetch('https://www.googleapis.com/drive/v3/files?fields=id,webViewLink&supportsAllDrives=true', {
-    method: 'POST', signal: AbortSignal.timeout(5000),
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, mimeType: 'application/vnd.google-apps.folder', parents: [parent] })
-  });
-  const j = await r.json();
-  if (!r.ok) throw new Error('Drive folder create failed: ' + JSON.stringify(j.error || j));
-  return j;
-}
-
-async function driveShare(token, fileId, email) {
-  const r = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}/permissions?sendNotificationEmail=false&supportsAllDrives=true`, {
-    method: 'POST', signal: AbortSignal.timeout(5000),
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ type: 'user', role: 'writer', emailAddress: email })
-  });
-  if (!r.ok) throw new Error('Drive share failed: ' + (await r.text()));
-}
 
 // Pulls the "website" custom field off a Checkout Session. Dashboard-created fields get an
 // auto-generated key, so match on the key OR the label. Returns a normalized https URL or null.
@@ -135,13 +108,18 @@ export default async function handler(req, res) {
 
     const token = await googleToken(env);
     const folder = await driveFolder(token, f['Client Name'] || name, env.DRIVE_PARENT_FOLDER_ID || DEFAULT_PARENT);
-    await driveFolder(token, 'Brand Assets', folder.id);
-    await driveFolder(token, 'Deliveries', folder.id);
     await driveShare(token, folder.id, email);
+
+    // Their first brand: named after the company they entered, with its own Brand Assets + Deliveries.
+    const site = websiteFromSession(s);
+    const brandName = folderName(f['Company'] || f['Client Name'] || name);
+    const brandFolder = await brandFolders(token, brandName, folder.id);
+    const brandFields = { 'Brand Name': brandName, 'Client': [rec.id], 'Status': 'Setting up', 'Drive Folder': brandFolder.webViewLink, 'Drive Folder ID': brandFolder.id };
+    if (site || f['Website']) brandFields['Website'] = f['Website'] || site;
+    await airtable(env, BRANDS, { method: 'POST', body: JSON.stringify({ typecast: true, records: [{ fields: brandFields }] }) });
 
     const fields = { 'Drive Folder': folder.webViewLink };
     // Website entered at checkout (Stripe custom field) -> Airtable Website, unless already set.
-    const site = websiteFromSession(s);
     if (site && !f['Website']) fields['Website'] = site;
     if (env.ONBOARDING_GUIDE_URL) fields['Notion Onboarding Page'] = env.ONBOARDING_GUIDE_URL;
     // Every client gets a private portal (send requests, track status, approve deliveries).
