@@ -27,7 +27,7 @@
     <section class="phead">
       <div>
         <h1>Hi <em id="p-name"></em></h1>
-        <p class="lede">Send us your winners, track progress, and approve deliveries, all in one place.</p>
+        <p class="lede">Send us your winners, track progress, and approve deliveries for every brand, all in one place.</p>
       </div>
       <nav class="plinks" aria-label="Your links">
         <a id="p-drive" class="plink" hidden>Your drive folder</a>
@@ -47,10 +47,35 @@
       <p class="form-status" id="site-status" role="status" aria-live="polite"></p>
     </section>
 
+    <section id="p-brands" class="pcard pbrands" aria-labelledby="brands-h">
+      <div class="bh-head">
+        <div>
+          <h2 id="brands-h" class="ph2">Your brands</h2>
+          <p class="bh-sub">Unlimited brands. We work on one request at a time across all of them, and setting up a new brand takes one turn in your queue.</p>
+        </div>
+        <button type="button" class="btn btn-soft btn-sm" id="pb-add">Add a brand</button>
+      </div>
+      <ul id="brand-list" class="blist"></ul>
+      <form id="brand-form" class="bform" novalidate hidden>
+        <h3 class="bform-h">Add a brand</h3>
+        <p class="hint">We study its website and current ads and build its brand profile before making anything for it. That setup is the next turn in your queue.</p>
+        <div class="bform-grid">
+          <div class="field"><label for="b-name">Brand name</label><input id="b-name" name="name" type="text" maxlength="80" autocomplete="off" required></div>
+          <div class="field"><label for="b-site">Website or main social page</label><input id="b-site" name="website" type="url" inputmode="url" maxlength="300" placeholder="brandname.com" required></div>
+        </div>
+        <div class="field"><label for="b-notes">Anything we should know? <span class="opt">(optional)</span></label><textarea id="b-notes" name="notes" maxlength="1500" placeholder="Their best ads right now, who they sell to, anything to avoid."></textarea></div>
+        <div class="bform-acts"><button type="submit" class="btn btn-main btn-sm">Add brand</button><button type="button" class="btn btn-soft btn-sm" id="b-cancel">Cancel</button></div>
+        <p class="form-status" id="brand-status" role="status" aria-live="polite"></p>
+      </form>
+      <p class="form-status" id="brands-msg" role="status" aria-live="polite"></p>
+      <details id="b-archived" class="barch" hidden><summary>Archived brands</summary><ul id="archived-list" class="blist"></ul></details>
+    </section>
+
     <div class="pgrid">
       <section class="pcard" aria-labelledby="new-h">
         <h2 id="new-h" class="ph2">Send a winner</h2>
         <form id="req-form" novalidate>
+          <div class="field" id="f-brand" hidden><label for="r-brand">Which brand?</label><select id="r-brand" name="brand"></select></div>
           <div class="field"><label for="r-title">What do you need?</label><input id="r-title" name="title" type="text" maxlength="120" required placeholder="e.g. Our best UGC video: 5 new hooks"></div>
           <div class="field"><label for="r-type">Type</label><select id="r-type" name="type" required></select></div>
           <div class="field"><label for="r-brief">Brief</label><textarea id="r-brief" name="brief" maxlength="4000" required placeholder="What's the winner? Paste a link or attach it below, and tell us how it's performing. What do you want: new hooks, new formats, fresh visuals? Anything to keep or avoid?"></textarea></div>
@@ -64,7 +89,9 @@
       </section>
 
       <section class="pcard" aria-labelledby="list-h">
-        <h2 id="list-h" class="ph2">Your requests</h2>
+        <div class="rl-head"><h2 id="list-h" class="ph2">Your requests</h2>
+          <div class="rl-filter" id="rl-filter" hidden><label for="r-filter" class="sr-only">Show requests for</label><select id="r-filter"><option value="">All brands</option></select></div></div>
+        <p class="hint rl-note">One request at a time, in the order you send them. Changes to delivered work go first.</p>
         <ul id="req-list" class="rlist"></ul>
         <p id="req-empty" class="hint" hidden>No requests yet. Send your first one and it'll appear here.</p>
       </section>
