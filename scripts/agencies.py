@@ -15,7 +15,7 @@ from blog import SITE, STRIPE, esc
 PATH = "/for/agencies"
 TITLE = "White-Label Ad Creative for Agencies | Sokol Systems"
 DESC = ("White-label ad creative for agencies: new versions of your clients' winning ads, photos and video, "
-        "24-hour delivery, unlimited brands, $2,995 a month.")
+        "24-hour delivery, unlimited brands, $1,495 a month.")
 
 SAMPLES = ["ugc-serum-selfie", "burger-ad", "coffee-meme-post", "car-suv-ad"]
 
@@ -79,8 +79,8 @@ def ld():
          "description": "White-label creative subscription for agencies: new versions of clients' best-performing ads, product photography, UGC-style video and Reels, with unlimited brands and 24-hour delivery per request.",
          "provider": {"@id": SITE + "/#org"}, "url": SITE + PATH, "areaServed": "Worldwide",
          "audience": {"@type": "BusinessAudience", "name": "Marketing agencies"},
-         "offers": {"@type": "Offer", "price": "2995", "priceCurrency": "USD", "url": SITE + "/pricing",
-                    "priceSpecification": {"@type": "UnitPriceSpecification", "price": "2995", "priceCurrency": "USD", "unitText": "MONTH",
+         "offers": {"@type": "Offer", "price": "1495", "priceCurrency": "USD", "url": SITE + "/pricing",
+                    "priceSpecification": {"@type": "UnitPriceSpecification", "price": "1495", "priceCurrency": "USD", "unitText": "MONTH",
                                            "referenceQuantity": {"@type": "QuantitativeValue", "value": 1, "unitCode": "MON"}}}},
         {"@type": "WebPage", "@id": SITE + PATH + "#webpage", "url": SITE + PATH, "name": TITLE,
          "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": SITE + PATH + "#service"}},
@@ -185,7 +185,7 @@ def page():
     <div class="ind-plan-box">
       <div>
         <h2 id="plan-h">One plan. <em>Unlimited brands.</em></h2>
-        <p>$2,995 a month for unlimited requests across all your clients, produced one at a time, each delivered within 24 hours. No contract; pause or cancel anytime.</p>
+        <p>$1,495 a month for unlimited requests across all your clients, produced one at a time, each delivered within 24 hours. No contract; pause or cancel anytime.</p>
       </div>
       <div class="ind-plan-cta"><a class="btn btn-main" href="{STRIPE}">Start your subscription</a><a class="ind-link" href="/pricing">See pricing and how we compare</a></div>
     </div>

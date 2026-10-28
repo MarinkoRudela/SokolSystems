@@ -103,7 +103,7 @@ def page():
   <div class="wrap">
     <div class="center"><h2 id="ways-h">Two ways to <em>work with Sokol.</em></h2></div>
     <ul class="impl-two">
-      <li><span class="impl-tag">Done for you</span><h3>The creative subscription</h3><p>Send us your winners and we make the new versions, photos and video. $2,995 a month, each request delivered within 24 hours.</p><a class="ind-link" href="/pricing">See pricing</a></li>
+      <li><span class="impl-tag">Done for you</span><h3>The creative subscription</h3><p>Send us your winners and we make the new versions, photos and video. $1,495 a month, each request delivered within 24 hours.</p><a class="ind-link" href="/pricing">See pricing</a></li>
       <li class="impl-hi"><span class="impl-tag">Built for you</span><h3>Implementation</h3><p>We build the system inside your business, train your team and hand it over. Scoped and quoted on a call.</p><a class="ind-link" href="{CALL}">Book an implementation call</a></li>
     </ul>
   </div>

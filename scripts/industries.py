@@ -43,8 +43,8 @@ def page(i):
         {"@type": "Service", "@id": url + "#service", "name": "Ad creative for " + label, "serviceType": "Advertising creative production",
          "description": strip_tags(i["description"]), "provider": {"@id": SITE + "/#org"}, "url": url, "areaServed": "Worldwide",
          "audience": {"@type": "BusinessAudience", "name": i["name"]},
-         "offers": {"@type": "Offer", "price": "2995", "priceCurrency": "USD", "url": SITE + "/pricing",
-                    "priceSpecification": {"@type": "UnitPriceSpecification", "price": "2995", "priceCurrency": "USD", "unitText": "MONTH",
+         "offers": {"@type": "Offer", "price": "1495", "priceCurrency": "USD", "url": SITE + "/pricing",
+                    "priceSpecification": {"@type": "UnitPriceSpecification", "price": "1495", "priceCurrency": "USD", "unitText": "MONTH",
                                            "referenceQuantity": {"@type": "QuantitativeValue", "value": 1, "unitCode": "MON"}}}},
         {"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": i["title"], "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": url + "#service"}},
         {"@type": "BreadcrumbList", "itemListElement": [
@@ -145,7 +145,7 @@ def page(i):
     <div class="ind-plan-box">
       <div>
         <h2 id="plan-h">One plan. <em>Everything included.</em></h2>
-        <p>$2,995 a month for unlimited requests, produced one at a time, each delivered within 24 hours. No contract; pause or cancel anytime.</p>
+        <p>$1,495 a month for unlimited requests, produced one at a time, each delivered within 24 hours. No contract; pause or cancel anytime.</p>
       </div>
       <div class="ind-plan-cta"><a class="btn btn-main" href="{STRIPE}">Start your subscription</a><a class="ind-link" href="/pricing">See pricing and how we compare</a></div>
     </div>

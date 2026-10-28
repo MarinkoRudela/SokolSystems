@@ -1,4 +1,4 @@
-// Stripe webhook: finishes onboarding a new $2,995 subscriber automatically.
+// Stripe webhook: finishes onboarding a new Sokol subscriber ($1,495/month) automatically.
 // 1. Verifies the request really came from Stripe (signature check on the raw body).
 // 2. Finds the client record the Airtable onboarding automation created.
 // 3. Creates their Google Drive folder, shares it with them, and sets up their first brand inside it
@@ -14,7 +14,8 @@
 import crypto from 'node:crypto';
 import { googleToken, driveFolder, driveShare, brandFolders, folderName } from './_lib/drive.js';
 
-const PRICE_CENTS = 299500;
+// $1,495/month. 299500 is the old $2,995 price, still accepted so anyone who checked out on the old link is onboarded too.
+const PRICE_CENTS = [149500, 299500];
 const DEFAULT_PARENT = '1zfBgXHf1FmKzOLpM1HGNorfRLDTHAH07';   // "Sokol Systems — Clients"
 const DEFAULT_CLIENTS = 'tbloJmuK4GVVz3ZrU';
 const BRANDS = 'tbl3s2meIuOoKE2Uj';
@@ -79,7 +80,7 @@ export default async function handler(req, res) {
   if (event.type !== 'checkout.session.completed') return res.status(200).json({ ignored: event.type });
 
   const s = event.data && event.data.object || {};
-  if (s.mode !== 'subscription' || s.amount_total !== PRICE_CENTS) return res.status(200).json({ ignored: 'not a Sokol subscription' });
+  if (s.mode !== 'subscription' || !PRICE_CENTS.includes(s.amount_total)) return res.status(200).json({ ignored: 'not a Sokol subscription' });
 
   const email = s.customer_details && s.customer_details.email;
   const name = (s.customer_details && s.customer_details.name) || email;

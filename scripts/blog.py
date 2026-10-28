@@ -272,7 +272,7 @@ def llms(posts):
         "> Sokol Systems is an ad creative subscription. Brands send their best-performing ads and social posts, and Sokol turns them into new versions (new hooks, angles, formats and sizes), plus product shots, photography, UGC-style video, edited Reels and social posts.",
         "",
         "Key facts:",
-        "- Price: $2,995 per month, one plan. No contract; pause or cancel anytime.",
+        "- Price: $1,495 per month, one plan. No contract; pause or cancel anytime.",
         "- Unlimited requests, produced one at a time. Each request is delivered within 24 hours, Monday to Friday (US Eastern Time).",
         "- Unlimited brands on every subscription; requests for all brands share one queue, and setting up a new brand takes one turn in it.",
         "- Unlimited revisions. Clients own everything delivered.",
