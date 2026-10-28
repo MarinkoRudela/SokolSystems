@@ -10,7 +10,7 @@ from industries_data import INDUSTRIES
 
 SITE = "https://sokolsystems.io"
 AUTHOR = {"name": "Marinko Rudela", "bio": "Marinko Rudela runs Sokol Systems, an ad creative subscription that builds new versions of brands’ best-performing ads, plus product shots, photography and UGC-style video."}
-STRIPE = "https://buy.stripe.com/8x2eVd5SX3767u5b2W5Ne00"
+STRIPE = "https://buy.stripe.com/00w14ndlpgXWg0B4Ey5Ne01"
 OG_IMAGE = SITE + "/social-preview.jpg?v=2"
 STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/implementation", 0.8), ("/for/agencies", 0.8), ("/industries", 0.7), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
 NEW_PAGES_DATE = "2026-10-20"
