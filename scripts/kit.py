@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import blog
 from blog import SITE, esc
 
-KIT_BUY = "#kit-checkout-not-live-yet"   # replace with the $149 Stripe payment link
+KIT_BUY = "https://buy.stripe.com/9B6eVd2GLcHG3dP0oi5Ne02"   # replace with the $149 Stripe payment link
 PRICE = "$149"
 PATH = "/kit"
 TITLE = "AI Creative System Kit for Business Owners — Sokol Systems"
