@@ -37,7 +37,7 @@ INCLUDED = [
     ("Templates that do the thinking",
      "Brand profile, briefs for every format, a winner breakdown and a 15-point quality check before anything goes live."),
     ("Training and 6 months of updates",
-     "A step-by-step guide with screenshots and a progress bar. When AI tools change, type “run the update” and Claude installs what’s new without touching your work."),
+     "A 16-step guide with a progress bar and a fix for the usual snags at every step. When AI tools change, type “run the update” and Claude installs what’s new without touching your work."),
 ]
 
 COMMANDS = [
@@ -64,7 +64,7 @@ NEEDS = [
     ("Airtable", "Your request queue and trackers. The free plan is enough to start."),
     ("Google Drive and Gmail", "Your brand files, deliveries and email alerts."),
     ("Meta Ads Manager", "To find your winning ads. Optional if you’re not running ads yet."),
-    ("Time", "About an hour to set up, then 6 to 12 hours a week to run it well."),
+    ("Time", "About two hours to set up, then 6 to 12 hours a week to run it well."),
 ]
 
 FOR = ["Business owners and in-house marketers running Meta or TikTok ads",

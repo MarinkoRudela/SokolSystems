@@ -105,7 +105,10 @@ PARTS = [
     "Click <strong>+ &gt; Connectors</strong> and check Google Drive, Gmail, Airtable and Higgsfield are switched on for this chat.",
    ],
    see="A fresh chat with the best model and all four connectors on.",
-   stuck=[]),
+   stuck=[
+    ("A connector is missing from the list.", "It isn’t connected yet. Go back to steps 5 to 7."),
+    ("I can’t pick Claude Opus.", "Some plans only offer it with limits. Use the most capable model you have; setup takes longer with a smaller one but works."),
+   ]),
  ]),
  ("Set me up", [
   dict(id="set-me-up", title="Type “set me up”", minutes=40,
@@ -158,7 +161,9 @@ PARTS = [
     "Type <code>brief 5 variations of this</code>. Each variation changes one thing, so your results tell you something.",
    ],
    see="A new request in your Airtable <strong>Requests</strong> table with a clear brief.",
-   stuck=[]),
+   stuck=[
+    ("Claude can’t see the ad.", "Upload a screenshot or the video file into the chat, or paste the ad’s text and its results."),
+   ]),
   dict(id="make", title="Make the next request", minutes=30,
    do=[
     "Type <code>make the next request</code>.",
@@ -178,7 +183,10 @@ PARTS = [
     "Approve it yourself in Airtable. Claude never ticks Approved.",
    ],
    see="An approved ad, in every size, ready to launch.",
-   stuck=[]),
+   stuck=[
+    ("The quality check fails.", "Type <code>make the next request</code> again: Claude regenerates what failed and asks before spending more credits."),
+    ("A size crops the product badly.", "Ask Claude to remake that size with the product smaller and centered, inside the safe zone."),
+   ]),
  ]),
  ("Every week", [
   dict(id="weekly", title="Run your weekly rhythm", minutes=10,
