@@ -64,6 +64,7 @@ NAV = """<a class="skip" href="#main">Skip to content</a>
       <li><a href="/#how">How it works</a></li>
       <li><a href="/pricing">Pricing</a></li>
       <li><a href="/implementation">Implementation</a></li>
+      <li><a href="/kit">The kit</a></li>
       <li><a href="/industries">Industries</a></li>
       <li><a href="/blog" aria-current="page">Blog</a></li>
       <li><a href="/#faq">FAQ</a></li>
@@ -80,6 +81,7 @@ FOOT = """<footer>
       <li><a href="%s">Start your subscription</a></li>
       <li><a href="/pricing">Pricing</a></li>
       <li><a href="/implementation">Implementation</a></li>
+      <li><a href="/kit">The kit</a></li>
       <li><a href="/industries">Industries</a></li>
       <li><a href="/for/agencies">For agencies</a></li>
       <li><a href="/blog">Blog</a></li>
