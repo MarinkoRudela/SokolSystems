@@ -55,6 +55,17 @@
     if(!window._fbq) window._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
     var s=document.createElement('script'); s.async=true; s.src='https://connect.facebook.net/en_US/fbevents.js'; document.head.appendChild(s);
     window.fbq('init',META_PIXEL_ID); window.fbq('track','PageView');
+    trackConversion();
+  }
+  // Thank-you pages carry data-conversion (Purchase / Subscribe) and data-value on <body>. Stripe adds
+  // ?session_id=cs_... on the way back from checkout; it is the event ID, so a reload counts once.
+  // Opening the page without a real checkout session records nothing.
+  function trackConversion(){
+    var b=document.body, ev=b&&b.getAttribute('data-conversion'); if(!ev||typeof window.fbq!=='function') return;
+    var sid=new URLSearchParams(location.search).get('session_id')||'';
+    if(!/^cs_(live|test)_[A-Za-z0-9]{10,200}$/.test(sid)) return;
+    var k='sokol-conv-'+sid; try{ if(localStorage.getItem(k)) return; localStorage.setItem(k,'1'); }catch(e){}
+    window.fbq('track',ev,{value:Number(b.getAttribute('data-value'))||0,currency:'USD',content_name:b.getAttribute('data-item')||''},{eventID:sid});
   }
   function choice(){ try{return localStorage.getItem(KEY)}catch(e){return null} }
   function save(v){ try{localStorage.setItem(KEY,v)}catch(e){} }
