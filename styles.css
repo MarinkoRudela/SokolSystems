@@ -982,8 +982,8 @@ h2 em{display:block}
 .g-done[aria-pressed="true"]{background:var(--green-tint);border-color:var(--green-ink);color:var(--green-ink)}
 .g-done[aria-pressed="true"] .g-box{background:var(--green-ink);border-color:var(--green-ink)}
 .g-done[aria-pressed="true"] .g-box::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:translateY(-1px) rotate(45deg)}
-.g-finish,.g-updates,.g-help{background:var(--paper);border:1px solid var(--rule);border-radius:18px;padding:26px;margin-bottom:16px;scroll-margin-top:96px}
-.g-finish{background:var(--green-tint)}
+.kit-guide .g-finish,.kit-guide .g-updates,.kit-guide .g-help{background:var(--paper);border:1px solid var(--rule);border-radius:18px;padding:26px;margin-bottom:16px;scroll-margin-top:96px}
+.kit-guide .g-finish{background:var(--green-tint)}
 .g-finish h2,.g-updates h2,.g-help h2{font-size:clamp(24px,2.6vw,30px);margin-bottom:10px}
 .g-updates p+p,.g-help p+p{margin-top:10px}
 .g-foot{padding:30px 0 40px;border-top:1px solid var(--rule);font-size:14px;color:var(--navy-soft)}
