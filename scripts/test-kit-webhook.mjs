@@ -79,5 +79,7 @@ ok(r.code === 400, '9 bad signature rejected');
 calls = []; r = res(); await handler(req(session({ payment_status: 'unpaid' })), r);
 ok(r.code === 200 && r.body.ignored && calls.length === 0, '10 unpaid ignored');
 
+existing = false; calls = []; r = res(); await handler(req(session({ payment_status: 'no_payment_required', amount_total: 0 })), r);
+ok(r.code === 200 && r.body.shared && posted()['Amount Paid'] === 0, '10b free (100% promo code) still fulfilled');
 ok(kit.addMonths('2026-08-31', 6) === '2027-02-28', '11 month-end clamp ' + kit.addMonths('2026-08-31', 6));
 console.log(fail ? `${fail} FAILED` : 'ALL PASS');

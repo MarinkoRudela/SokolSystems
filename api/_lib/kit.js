@@ -82,7 +82,8 @@ export async function handleKitPurchase(env, s, deps = {}) {
 
   const email = s.customer_details && s.customer_details.email;
   if (!email) return { status: 200, body: { ignored: 'kit checkout without an email' } };
-  if (s.payment_status && s.payment_status !== 'paid') return { status: 200, body: { ignored: 'kit checkout not paid yet' } };
+  // 'no_payment_required' = a 100% promo code (a comped tester); still fulfil it.
+  if (s.payment_status && !['paid', 'no_payment_required'].includes(s.payment_status)) return { status: 200, body: { ignored: 'kit checkout not paid yet' } };
   const name = (s.collected_information && s.collected_information.individual_name) ||
                (s.customer_details && s.customer_details.name) || email;
 
