@@ -33,7 +33,7 @@ INCLUDED = [
     ("Your creative system in Airtable",
      "A request queue, a winners tracker, deliveries and assets, linked together, with email alerts when work is ready to review."),
     ("Tested Higgsfield recipes",
-     "Prompts for product shots, lifestyle scenes, gift sets, hands and UGC-style images, with the settings and the rules that keep your label right."),
+     "Prompts for product shots, lifestyle scenes, gift sets, hands, UGC-style images and finished ads with your headline and price, with the settings and the rules that keep your label right."),
     ("Templates that do the thinking",
      "Brand profile, briefs for every format, a winner breakdown and a 15-point quality check before anything goes live."),
     ("Training and 6 months of updates",
@@ -103,7 +103,7 @@ SHOTS = [
     ("ll-studio", "Candle on a cream studio backdrop", "Studio product shot"),
     ("ll-hands", "Hands lighting the candle with a match", "Hands with the product"),
     ("ll-unboxing", "Woman unboxing the candle in her kitchen", "UGC-style still"),
-    ("ll-bluehour", "Room spray and candle at dusk", "Second scent, same look"),
+    ("ll-headline", "Candle ad with the headline “Slow evenings, bottled.”", "Finished ad, words included"),
     ("ll-giftset", "Gift box with three candles", "Gift set"),
 ]
 
