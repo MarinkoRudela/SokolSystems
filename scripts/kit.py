@@ -231,7 +231,29 @@ def page():
 """ + blog.FOOT
 
 
+def thanks_page():
+    """kit-thanks.html: where Stripe sends buyers after paying (?session_id=...). Body attributes let
+    main.js record one Purchase for Meta, only for visitors who chose "Allow all"."""
+    nav = blog.NAV.replace(' aria-current="page"', "")
+    head = blog.head("You’re in — AI Creative System Kit", "Your AI Creative System Kit is on its way.", "/kit-thanks").replace(
+        '<meta name="robots" content="index,follow,max-image-preview:large">', '<meta name="robots" content="noindex,nofollow">')
+    return head + '</head>\n<body class="page" data-conversion="Purchase" data-value="149" data-item="AI Creative System Kit">\n' + nav + """<main id="main" class="doc">
+<h1>You’re <em>in.</em></h1>
+<p>Thanks for buying the AI Creative System Kit. Your welcome email is on its way to the email you used at checkout.</p>
+<ol class="steps">
+<li>Open the welcome email. It has your kit folder, the Claude skill, your training guide and your Buyer ID.</li>
+<li>Open the kit folder while signed in to the Google account it’s shared with.</li>
+<li>Follow the training guide from step 1. Setup takes about two hours.</li>
+</ol>
+<p>If your checkout email isn’t a Google account, we’ll email you to ask which Google account to share the folder with.</p>
+<p>No email within 15 minutes? Check spam, then write to <a href="mailto:marinko@sokolsystems.io">marinko@sokolsystems.io</a> from the email you used at checkout.</p>
+</main>
+""" + blog.FOOT
+
+
 if __name__ == "__main__":
     out = page()
     open("kit.html", "w", encoding="utf-8").write(out)
     print("kit.html", len(TITLE), "title chars", len(DESC), "desc chars")
+    open("kit-thanks.html", "w", encoding="utf-8").write(thanks_page())
+    print("kit-thanks.html written")

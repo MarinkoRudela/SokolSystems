@@ -12,7 +12,7 @@ SITE = "https://sokolsystems.io"
 AUTHOR = {"name": "Marinko Rudela", "bio": "Marinko Rudela runs Sokol Systems, an ad creative subscription that builds new versions of brands’ best-performing ads, plus product shots, photography and UGC-style video."}
 STRIPE = "https://buy.stripe.com/00w14ndlpgXWg0B4Ey5Ne01"
 OG_IMAGE = SITE + "/social-preview.jpg?v=2"
-STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/implementation", 0.8), ("/for/agencies", 0.8), ("/industries", 0.7), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
+STATIC_PAGES = [("/", 1.0), ("/pricing", 0.8), ("/implementation", 0.8), ("/kit", 0.8), ("/for/agencies", 0.8), ("/industries", 0.7), ("/blog", 0.7), ("/terms", 0.3), ("/privacy", 0.3)]
 NEW_PAGES_DATE = "2026-10-20"
 
 def esc(s):
@@ -261,6 +261,7 @@ def sitemap(posts):
         if path == "/implementation": return "2026-10-21"
         if path in ("/for/agencies", "/terms"): return "2026-10-22"
         if path in ("/", "/pricing"): return "2026-10-22"
+        if path == "/kit": return "2026-11-04"
         return NEW_PAGES_DATE if path == "/blog" else "2026-10-15"
     rows = [f"  <url><loc>{SITE}{path}</loc><lastmod>{lastmod(path)}</lastmod><priority>{pr}</priority></url>" for path, pr in STATIC_PAGES]
     rows += [f"  <url><loc>{SITE}/for/{i['slug']}</loc><lastmod>{NEW_PAGES_DATE}</lastmod><priority>0.6</priority></url>" for i in INDUSTRIES]
@@ -282,12 +283,14 @@ def llms(posts):
         "- Sokol does not need access to a client's ad account and does not guarantee ad performance.",
         "- A human creative director owns strategy and quality; AI production tools handle the slow parts of production.",
         "- Also offered: building and installing a custom AI creative system inside a client's own business (scoped and quoted on an implementation call; no public price).",
+        "- Also offered: the AI Creative System Kit, $149 one-time with 6 months of updates (optional Kit Updates membership after that, $29/month or $279/year): a do-it-yourself setup where Claude builds a creative system inside a business's own Google Drive and Airtable, with Higgsfield for images and video. All sales final.",
         "- Founder: Marinko Rudela. Contact: marinko@sokolsystems.io",
         "",
         "## Pages",
         f"- [Home]({SITE}/): what Sokol does, sample work, how it works, and what an equivalent in-house team costs",
         f"- [Pricing]({SITE}/pricing): the plan, an example month, and a sourced comparison with freelancers, design subscriptions, an in-house team and agencies",
         f"- [Implementation]({SITE}/implementation): building a custom AI creative system inside a client's own business (brand setup, consistent characters, production workflows, approvals, training); scoped and quoted on a call",
+        f"- [AI Creative System Kit]({SITE}/kit): the $149 do-it-yourself kit: what's included, the 15 commands, what it costs to run and who it's for",
         f"- [For agencies]({SITE}/for/agencies): white-label ad creative for marketing agencies, with unlimited brands and a free sample on one client ad",
         f"- [Industries]({SITE}/industries): the industries Sokol makes ad creative for, with a page for each",
         f"- [Blog]({SITE}/blog): research and notes on ad creative",
