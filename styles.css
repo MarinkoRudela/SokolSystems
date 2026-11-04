@@ -918,6 +918,12 @@ h2 em{display:block}
 .kit-fit .ind-makes{grid-template-columns:1fr;margin-top:18px}
 .kit-no li::before{background:var(--navy-soft)}
 .kit-three{grid-template-columns:repeat(3,1fr);max-width:1100px}
+.kit-report-sec{padding:72px 0 40px}
+.kit-report{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px;align-items:center}
+.kit-report-text h2{font-size:clamp(30px,4vw,50px)}
+.kit-report-fig{margin:0;background:var(--paper);border:1px solid var(--rule);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(.6deg)}
+.kit-report-fig img{display:block;width:100%;height:auto}
+@media(max-width:900px){.kit-report{grid-template-columns:1fr;gap:28px}.kit-report-fig{transform:none}}
 @media(max-width:1100px){.kit-cmds{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){.kit-shots{grid-template-columns:1fr 1fr}.kit-cmds{grid-template-columns:1fr}.kit-fit{grid-template-columns:1fr}.kit-three{grid-template-columns:1fr}}
 @media(max-width:520px){.kit-shots{gap:10px}.kit-shots figcaption{padding:9px 11px;font-size:13px}}

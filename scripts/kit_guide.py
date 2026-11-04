@@ -191,7 +191,7 @@ PARTS = [
  ("Every week", [
   dict(id="weekly", title="Run your weekly rhythm", minutes=10,
    do=[
-    "<strong>Monday:</strong> <code>weekly report</code> and <code>what’s wearing out?</code>",
+    "<strong>Monday:</strong> <code>weekly report</code> (Claude builds a dashboard of your week and saves a copy in <strong>Creative System &gt; Reports</strong>) and <code>what’s wearing out?</code>",
     "<strong>Tuesday:</strong> <code>break down this ad</code>, <code>brief 5 variations of this</code>",
     "<strong>Wednesday:</strong> <code>make the next request</code>, <code>write 5 hooks for this</code>",
     "<strong>Thursday:</strong> <code>check this delivery</code>, <code>make all sizes</code>, <code>is this allowed?</code>",

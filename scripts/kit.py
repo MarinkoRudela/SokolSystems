@@ -35,7 +35,7 @@ INCLUDED = [
     ("Tested Higgsfield recipes",
      "Prompts for product shots, lifestyle scenes, gift sets, hands, UGC-style images and finished ads with your headline and price, with the settings and the rules that keep your label right."),
     ("Templates that do the thinking",
-     "Brand profile, briefs for every format, a winner breakdown and a 15-point quality check before anything goes live."),
+     "Brand profile, briefs for every format, a winner breakdown, a 15-point quality check and a weekly report dashboard."),
     ("Training and 6 months of updates",
      "A 16-step guide with a progress bar and a fix for the usual snags at every step. When AI tools change, type “run the update” and Claude installs what’s new without touching your work."),
 ]
@@ -53,7 +53,7 @@ COMMANDS = [
     ("write ad copy for this", "Primary text and headlines to match"),
     ("is this allowed?", "Flags fake-testimonial, claims and platform-policy risks"),
     ("what’s wearing out?", "Spots ads with creative fatigue"),
-    ("weekly report", "Winners, fatigue and what to make next"),
+    ("weekly report", "A visual dashboard of your week: winners, fatigue and what to make next"),
     ("monthly check-up", "Tests your connections, automations and tools"),
     ("run the update", "Installs new kit versions"),
 ]
@@ -178,6 +178,17 @@ def page():
     <div class="center"><h2 id="cmd-h">15 skills. <em>One line each.</em></h2>
     <p class="lede mt">Type the words in Claude and it runs the whole task, asking before it creates, sends or spends anything.</p></div>
     <ul class="kit-cmds">{cmds}</ul>
+  </div>
+</section>
+
+<section class="kit-report-sec" aria-labelledby="report-h">
+  <div class="wrap kit-report">
+    <div class="kit-report-text">
+      <h2 id="report-h">Every Monday, <em>a report you’ll read.</em></h2>
+      <p class="lede mt">Type “weekly report” and Claude builds a dashboard of your week from your own ad results and Airtable queue: what’s winning, what’s wearing out, what’s waiting for you, and the three things to make next, each with the command to type.</p>
+      <p class="kit-fine">Sample for the made-up demo brand. Yours uses only your own numbers, and leaves out anything it doesn’t have.</p>
+    </div>
+    <figure class="kit-report-fig"><img src="/media/kit/weekly-report-720.webp" srcset="/media/kit/weekly-report-720.webp 720w, /media/kit/weekly-report.webp 1440w" sizes="(max-width:900px) 92vw, 640px" alt="Sample weekly creative report: totals, cost per purchase by ad, winners and ads wearing out" loading="lazy" width="720" height="776"></figure>
   </div>
 </section>
 
