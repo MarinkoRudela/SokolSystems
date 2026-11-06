@@ -38,7 +38,7 @@ ok(r.code === 200 && r.body.kit && r.body.shared, '1 kit purchase -> 200 shared'
 ok(perm().role === 'reader' && perm().emailAddress === 'owner@example.com', '1 shared view-only with checkout email (lowercased)');
 ok(calls.find(c => c.url.includes('/permissions')).url.includes('18aJmaH44JFuLWRjGrPyxoV9Zbdno21KY') && calls.find(c => c.url.includes('/permissions')).url.includes('sendNotificationEmail=false'), '1 master folder, no Google email');
 ok(f.Status === 'Ready' && f['Drive Access'] === 'Shared' && /^SK-[A-Z2-9]{6}$/.test(f['Buyer ID']), '1 row Ready/Shared with Buyer ID ' + f['Buyer ID']);
-ok(f['Purchased On'] === '2026-11-04' && f['Updates Until'] === '2027-05-04' && f['Amount Paid'] === 149, '1 dates ' + f['Purchased On'] + ' -> ' + f['Updates Until']);
+ok(f['Purchased On'] === '2026-11-04' && f['Updates Until'] === '2027-02-04' && f['Amount Paid'] === 149, '1 dates ' + f['Purchased On'] + ' -> ' + f['Updates Until']);
 ok(f['Checkout Session ID'] === 'cs_live_123' && f.Name === 'Pat Owner', '1 session id + name');
 
 // 2 different Google account entered at checkout

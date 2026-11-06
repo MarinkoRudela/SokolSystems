@@ -11,7 +11,7 @@ Key facts:
 - Sokol does not need access to a client's ad account and does not guarantee ad performance.
 - A human creative director owns strategy and quality; AI production tools handle the slow parts of production.
 - Also offered: building and installing a custom AI creative system inside a client's own business (scoped and quoted on an implementation call; no public price).
-- Also offered: the AI Creative System Kit, $149 one-time with 6 months of updates (optional Kit Updates membership after that, $29/month or $279/year): a do-it-yourself setup where Claude builds a creative system inside a business's own Google Drive and Airtable, with Higgsfield for images and video. All sales final.
+- Also offered: the AI Creative System Kit, $149 one-time with 3 months of updates (optional Kit Updates membership after that, $29/month or $279/year): a do-it-yourself setup where Claude builds a creative system inside a business's own Google Drive and Airtable, with Higgsfield for images and video. All sales final.
 - Founder: Marinko Rudela. Contact: marinko@sokolsystems.io
 
 ## Pages

@@ -6,7 +6,7 @@
 //   1. Skips it if a Kit Buyers row already has this Checkout Session ID (Stripe retries are safe).
 //   2. Shares the master kit folder (view only) with the buyer's Google account: the optional
 //      "Google account" checkout field if they filled it in, otherwise their checkout email.
-//   3. Creates the Kit Buyers row with a Buyer ID and "Updates Until" = purchase date + 6 months.
+//   3. Creates the Kit Buyers row with a Buyer ID and "Updates Until" = purchase date + 3 months.
 //      Status "Ready" -> Airtable emails the buyer their welcome email.
 //      Status "Needs attention" -> Airtable alerts Marinko (for example, the address isn't a
 //      Google account, so Drive can't share with it).
@@ -18,7 +18,7 @@ export const KIT_TAG = 'ai-creative-system';
 export const KIT_CENTS = 14900;
 const DEFAULT_MASTER = '18aJmaH44JFuLWRjGrPyxoV9Zbdno21KY';   // "AI Creative System Kit" (master)
 const DEFAULT_TABLE = 'tbl5rYuwLeoQSZXvP';                       // Kit Buyers
-const UPDATE_MONTHS = 6;
+const UPDATE_MONTHS = 3;
 
 export function isKitSession(s) {
   if (!s || s.mode !== 'payment') return false;

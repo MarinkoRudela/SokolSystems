@@ -14,7 +14,7 @@ PRICE = "$149"
 PATH = "/kit"
 TITLE = "AI Creative System Kit for Business Owners — Sokol Systems"
 DESC = ("Your own AI ad studio, set up by Claude. Type “set me up” to build a request queue, "
-        "brand profile and 15 skills with Higgsfield. $149 once, 6 months of updates.")
+        "brand profile and 15 skills with Higgsfield. $149 once, 3 months of updates.")
 
 STEPS = [
     ("Get the kit",
@@ -36,7 +36,7 @@ INCLUDED = [
      "Prompts for product shots, lifestyle scenes, gift sets, hands, UGC-style images and finished ads with your headline and price, with the settings and the rules that keep your label right."),
     ("Templates that do the thinking",
      "Brand profile, briefs for every format, a winner breakdown, a 15-point quality check and a weekly report dashboard."),
-    ("Training and 6 months of updates",
+    ("Training and 3 months of updates",
      "A 16-step guide with a progress bar and a fix for the usual snags at every step. When AI tools change, type “run the update” and Claude installs what’s new without touching your work."),
 ]
 
@@ -82,7 +82,7 @@ FAQ = [
      "No. The kit is built for Claude, because Claude can install skills and work directly in your Google Drive and Airtable. ChatGPT can’t run the setup the same way."),
     ("What does it cost to run each month?",
      "The kit is a one-time $149. The tools have their own plans: a paid Claude plan, Higgsfield credits for images and video, and Airtable (free to start). Check each tool’s pricing page, since prices change."),
-    ("What happens after 6 months?",
+    ("What happens after 3 months?",
      "Your kit keeps working. New updates continue with the optional Kit Updates membership, $29 a month or $279 a year. You can cancel the membership any time."),
     ("Can I get a refund?",
      "No. You get instant access to the full kit, so all sales are final. At checkout you confirm you want access straight away, which ends any right to cancel for digital content."),
@@ -146,7 +146,7 @@ def page():
     <h1 class="pr-h1">Your own AI ad studio. <em>Set up by Claude.</em></h1>
     <p class="lede mt">Connect Claude to your tools, type “set me up”, and it builds a complete creative system inside your business: a request queue, your brand profile, a winners tracker and 15 ready-made skills for turning your best ads into new ones.</p>
     <div class="ind-cta">{buy}<a class="ind-link" href="#included">See what’s included</a></div>
-    <p class="kit-fine">One-time payment · 6 months of updates included · All sales final</p>
+    <p class="kit-fine">One-time payment · 3 months of updates included · All sales final</p>
   </div>
 </section>
 
@@ -213,7 +213,7 @@ def page():
   <div class="wrap">
     <div class="center"><h2 id="ways-h">Three ways <em>to get it done.</em></h2></div>
     <ul class="impl-two kit-three">
-      <li class="impl-hi"><span class="impl-tag">Do it yourself</span><h3>The kit</h3><p>Set up the system yourself with Claude and run it in-house. {PRICE} once, with 6 months of updates.</p><a class="ind-link" href="{KIT_BUY}">Get the kit</a></li>
+      <li class="impl-hi"><span class="impl-tag">Do it yourself</span><h3>The kit</h3><p>Set up the system yourself with Claude and run it in-house. {PRICE} once, with 3 months of updates.</p><a class="ind-link" href="{KIT_BUY}">Get the kit</a></li>
       <li><span class="impl-tag">Built for you</span><h3>Implementation</h3><p>We build a custom version inside your business, train your team and hand it over. Quoted on a call.</p><a class="ind-link" href="/implementation">See implementation</a></li>
       <li><span class="impl-tag">Done for you</span><h3>The subscription</h3><p>Send us your winners and we make the new versions for you. $1,495 a month, each request within 24 hours.</p><a class="ind-link" href="/pricing">See the subscription</a></li>
     </ul>
@@ -232,7 +232,7 @@ def page():
     <div class="ind-plan-box">
       <div>
         <h2 id="plan-h">Build your own <em>AI ad studio.</em></h2>
-        <p>{PRICE} once. Instant access, 6 months of updates, and a private training guide. All sales final. By buying you agree to the <a href="/terms#kit">kit terms</a>.</p>
+        <p>{PRICE} once. Instant access, 3 months of updates, and a private training guide. All sales final. By buying you agree to the <a href="/terms#kit">kit terms</a>.</p>
       </div>
       <div class="ind-plan-cta">{buy}<a class="ind-link" href="/pricing">Rather we make it for you? See the subscription</a></div>
     </div>

@@ -207,7 +207,7 @@ PARTS = [
 
 UPDATES = """<section class="g-updates" id="updates" aria-labelledby="upd-h">
   <h2 id="upd-h">Keeping your kit current</h2>
-  <p>When AI tools change, we update the kit. Type <code>run the update</code> in Claude: it shows what’s new and installs it without touching your own work. Your included updates last 6 months from purchase (the date is in your welcome email).</p>
+  <p>When AI tools change, we update the kit. Type <code>run the update</code> in Claude: it shows what’s new and installs it without touching your own work. Your included updates last 3 months from purchase (the date is in your welcome email).</p>
   <p>After that, the kit keeps working exactly as it is. If you want new updates, the <strong>Kit Updates membership</strong> is $29 a month or $279 a year, cancel anytime. We’ll email you before your included months end with the link.</p>
 </section>"""
 
